@@ -11,6 +11,9 @@
           private $utilisateur;
           private $sujetAutorisation;
           private $numeroDecision;
+          private $dateDecision;
+
+
           private $dateDebutAutorisation;
           private $dateFinAutorisation;
           private $surface;
@@ -19,14 +22,14 @@
           private $situationActuelle;
           private $decisionDeDirection;
 
-          function __construct($utilisateur, $sujetAutorisation, $numeroDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle,$decisionDeDirection) {
+          function __construct($utilisateur, $sujetAutorisation, $numeroDecision,$dateDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle,$decisionDeDirection) {
               $faker = Factory::create();
-              $this->numero = $faker->randomDigit();
 
-              $this->utilisateur = $utilisateur;
-               
+               $this->numero = $faker->randomDigit();
+               $this->utilisateur = $utilisateur;
                $this->sujetAutorisation = $sujetAutorisation;
                $this->numeroDecision = $numeroDecision;
+               $this->dateDecision = $dateDecision;
                $this->dateDebutAutorisation = $dateDebutAutorisation;
                $this->dateFinAutorisation = $dateFinAutorisation;
                $this->surface = $surface;
@@ -265,6 +268,21 @@
                     return $this;
           }
 
+         /**
+          * @return mixed
+          */
+         public function getDateDecision()
+         {
+             return $this->dateDecision;
+         }
+
+         /**
+          * @param mixed $dateDecision
+          */
+         public function setDateDecision($dateDecision)
+         {
+             $this->dateDecision = $dateDecision;
+         }
           
      }
 ?>

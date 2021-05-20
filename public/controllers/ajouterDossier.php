@@ -7,15 +7,16 @@
     $utilisateur = $_POST['prenom'];
     $sujetAutorisation = $_POST['sujet'];
     $numeroDecision = $_POST['numero'];
-    $dateDebutAutorisation = $_POST['dd'];
-    $dateFinAutorisation = $_POST['dda'];
+    $dateDecision = $_POST['dd'];
+    $dateDebutAutorisation = $_POST['dda'];
+    $dateFinAutorisation = $_POST['dfa'];
     $surface = $_POST['surface'];
     $montant = $_POST['montant'];
     $typeActivite = $_POST['activite'];
     $situationActuelle = $_POST['situation'];
     $decisionDeDirection = $_POST['decision'];
 
-    $newDossier = new \App\models\dossier\Dossier($utilisateur, $sujetAutorisation, $numeroDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle, $decisionDeDirection);
+    $newDossier = new \App\models\dossier\Dossier($utilisateur, $sujetAutorisation, $numeroDecision, $dateDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle, $decisionDeDirection);
 
     var_dump($newDossier);
     $dossierDao = \App\models\dossier\DossierDaoFactory::getDossierDaoFactory("mysql");
