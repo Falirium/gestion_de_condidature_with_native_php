@@ -1,6 +1,10 @@
 <?php 
+     namespace App\models\dossier ;
+
      // connexion db
-     require '../classes/dbConnexion.php';
+     use App\classes\Connexion;
+
+     require '../classes/Connexion.php';
 
      class DossierDaoFactory {
 
@@ -8,12 +12,13 @@
 
           public static function getDossierDaoFactory($typeDao) {
                if ($typeDao === "mysql") {
-                    return DossierDaoFactory.getDossierDaoMysql();
+                    return DossierDaoFactory::getDossierDaoMysql();
                }
           }
 
           public static function getDossierDaoMysql() {
-               return new DossierDaoImpl($connect);
+              $connect = Connexion::getConnexion();
+              return new DossierDaoImpl($connect);
           }
      }
 

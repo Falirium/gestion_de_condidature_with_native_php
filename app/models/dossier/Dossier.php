@@ -1,5 +1,7 @@
 <?php     
 
+     namespace App\models\dossier ;
+
      class Dossier {
 
           // attributs

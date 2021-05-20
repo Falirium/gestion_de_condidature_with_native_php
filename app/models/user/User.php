@@ -1,5 +1,8 @@
 <?php 
 
+     
+     namespace App\models\user ;
+
      class User {
 
           // attributs

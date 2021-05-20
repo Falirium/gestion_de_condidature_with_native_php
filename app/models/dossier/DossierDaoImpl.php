@@ -1,5 +1,8 @@
 <?php 
 
+     
+     namespace App\models\dossier ;
+     
      class DossierDaoImpl implements DossierDao{
 
           private $connect = null;
@@ -13,7 +16,7 @@
                $query = "INSERT INTO 'dossier' 
                          VALUES (:num, :util, :sa, :nd, :dda, :dfa, :surface, :montant, :ta, :sa, :ddd)
                          ";
-               $stmt = $connect->prepare($query);
+               $stmt = $this->connect->prepare($query);
                $result = $stmt->execute([
                     ':num' => $dossier->getNumero(),
                     ':util' => $dossier->getUtilisateur(),

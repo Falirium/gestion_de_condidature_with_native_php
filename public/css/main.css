@@ -43,7 +43,7 @@ article {
 .candid_header
 {
     margin : auto; 
-	font-size : 12;
+	font-size : 12px;
 }
 .candid_header_td
 {
@@ -404,7 +404,7 @@ a:active {
 .conv_header
 {
     margin : auto; 
-    margin-bottom = 30px;
+    margin-bottom : 30px;
     font-family: Candara;
     font-weight: bold; 
     text-align: center;
@@ -419,7 +419,7 @@ a:active {
 {
     margin : auto; 
     margin-bottom: 20px;
-    margin-top: 20px;600px
+    margin-top: 20px;
     width : 500px;
     font-family: Candara; 
 }      
