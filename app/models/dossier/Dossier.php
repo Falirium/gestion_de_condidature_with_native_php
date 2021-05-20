@@ -2,6 +2,8 @@
 
      namespace App\models\dossier ;
 
+     use Faker\Factory;
+
      class Dossier {
 
           // attributs
@@ -18,17 +20,20 @@
           private $decisionDeDirection;
 
           function __construct($utilisateur, $sujetAutorisation, $numeroDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle,$decisionDeDirection) {
-               $this->$utilisateur = $utilisateur;
+              $faker = Factory::create();
+              $this->numero = $faker->randomDigit();
+
+              $this->utilisateur = $utilisateur;
                
-               $this->$sujetAutorisation = $sujetAutorisation; 
-               $this->$numeroDecision = $numeroDecision; 
-               $this->$dateDebutAutorisation = $dateDebutAutorisation; 
-               $this->$dateFinAutorisation = $dateFinAutorisation; 
-               $this->$surface = $surface; 
-               $this->$montant = $montant; 
-               $this->$typeActivite = $typeActivite; 
-               $this->$situationActuelle = $situationActuelle;
-               $this->$decisionDeDirection = $decisionDeDirection;
+               $this->sujetAutorisation = $sujetAutorisation;
+               $this->numeroDecision = $numeroDecision;
+               $this->dateDebutAutorisation = $dateDebutAutorisation;
+               $this->dateFinAutorisation = $dateFinAutorisation;
+               $this->surface = $surface;
+               $this->montant = $montant;
+               $this->typeActivite = $typeActivite;
+               $this->situationActuelle = $situationActuelle;
+               $this->decisionDeDirection = $decisionDeDirection;
 
           }
 

@@ -4,7 +4,7 @@
      // connexion db
      use App\classes\Connexion;
 
-     require '../classes/Connexion.php';
+
 
      class DossierDaoFactory {
 
@@ -16,7 +16,7 @@
                }
           }
 
-          public static function getDossierDaoMysql() {
+          private static function getDossierDaoMysql() {
               $connect = Connexion::getConnexion();
               return new DossierDaoImpl($connect);
           }

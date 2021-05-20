@@ -12,6 +12,8 @@
 
     if ($userImpl->verifierConnexion($e_cin,$e_key)) {
         // redirect to profil page
+        // Start a seesion and remember this user
+        header("Refresh:1; url=../views/profil.php");
     } else {
         // redirect to connexion page with "false crdentials message"
     }

@@ -2,11 +2,6 @@
      
      namespace App\models\user ;
 
-
-
-
-
-
      use App\classes\Connexion;
 
      class UserDaoFactory {
