@@ -14,9 +14,13 @@
 
         if ($dossierdao->archiverDossier($dossier)) {
             // Archive is successful
+            header("Location: ../views/dossier.php");
+
         } else {
             // Renvoie un erreur
+            echo "Failed";
         }
+
 
     } else {
         // Renvoie un error

@@ -43,6 +43,33 @@
                     
           }
 
+          public function modifierDossier($dossier) {
+              $query = "UPDATE `dossier` 
+                        SET `utilisateur` = :util, `sujetAutorisation` = :sa, `numeroDecision` = :nd, `dateDecision` = :dd, `dateDebutAutorisation` = :dda, `dateFinAutorisation` = ':dfa', `surface` = :surface, `montant` = :montant, `typeActivite` = :ta, `situationActuelle` = :sa, `decisionDeDirection` = :ddd
+                        WHERE numero = :id";
+
+             $stmt = $this->connect->prepare($query);
+             $result = $stmt->execute([
+
+                 ':util' => $dossier->getUtilisateur(),
+                 ':sa' => $dossier->getSujetAutorisation(),
+                 ':nd' => $dossier->getNumeroDecision(),
+                 ':dd' => $dossier->getDateDecision(),
+                 ':dda' => $dossier->getDateDebutAutorisation() ,
+                 ':dfa' => $dossier->getDateFinAutorisation(),
+                 ':surface' => $dossier->getSurface(),
+                 ':montant' => $dossier->getMontant(),
+                 ':ta' => $dossier->getTypeActivite(),
+                 ':sa' => $dossier->getSituationActuelle(),
+                 ':ddd' => $dossier->getDecisionDeDirection(),
+                 ':id' =>$dossier->getNumero()
+             ]);
+              var_dump($result);
+              if ($result)
+                  return true;
+              else return false;
+         }
+
           public  function selectionnerDossier($did)
           {
               // TODO: Implement selectionnerDossier() method.
@@ -52,35 +79,41 @@
                   ':id' => $did
               ]);
               if ($result) {
-                  return $result->fetchObject("\App\Models\Dossier");
+                  return $stmt->fetchObject("App\models\dossier\Dossier");
+                  //var_dump($result->fetchObject("\App\Models\Dossier"));
               }
           }
 
           public function archiverDossier($dossier)
           {
               // TODO: Implement archiverDossier() method.
-              $query = "UPDATE `archive` FROM`dossier` WHERE numero = :id";
+              $query = "UPDATE `dossier` SET `archive` = 1 WHERE numero = :id";
               $stmt = $this->connect->prepare($query);
               $result = $stmt->execute([
                   ":id" => $dossier->getNumero()
               ]);
+              //var_dump($result);
               if ($result) {
                   return true;
               } else {
                   return false;
               }
           }
-         public function afficherTousDossier()
+         public function afficherTousDossier($archiveValue)
          {
-             $query = "select * from  `dossier` ";
+             $isArchive = $archiveValue;
+             $query = "SELECT * FROM  `dossier` WHERE archive = :b";
              $stmt = $this->connect->prepare($query);
-             $result = $stmt->execute();
+             $result = $stmt->execute([
+                 ':b' => $isArchive
+             ]);
 
 
 
              if ($result) {
 
                   return $dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier");
+                  //var_dump($dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier"));
 
              } else {
                  // Show database errors

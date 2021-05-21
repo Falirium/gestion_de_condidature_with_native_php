@@ -30,7 +30,7 @@ echo "</table>"*/
 if($dossiers = $dossierDao->afficherTousDossier()) {
     $_SESSION['do_DossiersExist'] = $dossiers;
 
-    header("Location: ../views/dossier.php");
+    //header("Location: ../views/profil.php?action=consulter");
 } else {
     // Show a database errors
 }

@@ -27,19 +27,19 @@
                $result =  $stmt->execute([
                     ':cin'=> $e_cin
                ]);
-              var_dump($result);
+              //var_dump($result);
                if($stmt->rowCount() == 1) {
-                    $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-                    var_dump($user);
+                    $user = $stmt->fetchObject("App\models\user\User");
+                    //var_dump($user);
 
-                    if($e_key === $user['e_key']) {
-                         return true;
+                    if($e_key === $user->getE_key()) {
+                         return $user;
                     } else {
-                         return false;
+                         return null;
                     }
                       
                } else {
-                    return false;
+                    return null;
                }
 
           }

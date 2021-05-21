@@ -1,6 +1,11 @@
 <?php
     require __DIR__ . "/../vendor/autoload.php";
 
+    session_start();
+    if (isset($_SESSION['user_id'])) {
+        header("Refresh:1; url=views/profil.php");
+    }
+
     /*
     $faker = Faker\Factory::create();
 

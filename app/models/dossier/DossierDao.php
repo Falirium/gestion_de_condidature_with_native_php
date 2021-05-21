@@ -7,7 +7,7 @@
           public function selectionnerDossier($did);
           //public function modifierDossier($dossier);
           public function archiverDossier($dossier);
-          public function afficherTousDossier();
+          public function afficherTousDossier($archiveValue);
 
      }
 

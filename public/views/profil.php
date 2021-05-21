@@ -1,6 +1,13 @@
 <?php
+
+    require __DIR__ . "/../../vendor/autoload.php";
+    session_start();
     //Check if a $_SESSION[admin] is set
     // else redirect to connxion page
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Refresh:1; url=../");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,18 +35,19 @@
         <div id = "select_form">
             <button><a href="?action=ajouter">Ajouter un nouveau dossier</a> </button>
             <button><a href="?action=consulter">Consulter un dossier </a></button>
-            <button><a href="?action=archiver&did=3">Archiver un dossier </a></button>
+            <button><a href="dossier.php?did=3">Archiver un dossier </a></button>
 
         </div>
 
         <div id = "select_form">
             <?php
+
                 if (!isset($_GET['action'])){
 
                 } else if ($_GET['action'] === "ajouter") {
                     require_once 'formulaire.php';
                 } else if ($_GET['action'] === "consulter") {
-                    require_once 'dossier.php';
+                    header("Location: dossier.php");
                 }
             ?>
         </div>
