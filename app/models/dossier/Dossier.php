@@ -12,8 +12,6 @@
           private $sujetAutorisation;
           private $numeroDecision;
           private $dateDecision;
-
-
           private $dateDebutAutorisation;
           private $dateFinAutorisation;
           private $surface;
@@ -21,11 +19,16 @@
           private $typeActivite;
           private $situationActuelle;
           private $decisionDeDirection;
+          private $archive;
 
-          function __construct($utilisateur, $sujetAutorisation, $numeroDecision,$dateDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle,$decisionDeDirection) {
+
+
+
+          /*
+          function __construct($numero,$utilisateur, $sujetAutorisation, $numeroDecision,$dateDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle,$decisionDeDirection) {
               $faker = Factory::create();
 
-               $this->numero = $faker->randomDigit();
+               $this->numero = $numero;
                $this->utilisateur = $utilisateur;
                $this->sujetAutorisation = $sujetAutorisation;
                $this->numeroDecision = $numeroDecision;
@@ -37,8 +40,10 @@
                $this->typeActivite = $typeActivite;
                $this->situationActuelle = $situationActuelle;
                $this->decisionDeDirection = $decisionDeDirection;
+               $this->archive = false;
 
-          }
+          }*/
+
 
           public function toString() {
                
@@ -282,6 +287,22 @@
          public function setDateDecision($dateDecision)
          {
              $this->dateDecision = $dateDecision;
+         }
+
+         /**
+          * @return mixed
+          */
+         public function getArchive()
+         {
+             return $this->archive;
+         }
+
+         /**
+          * @param mixed $archive
+          */
+         public function setArchive($archive)
+         {
+             $this->archive = $archive;
          }
           
      }

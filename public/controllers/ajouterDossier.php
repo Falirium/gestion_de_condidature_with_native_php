@@ -4,19 +4,21 @@
 
     // Get $_POST data
 
-    $utilisateur = $_POST['prenom'];
-    $sujetAutorisation = $_POST['sujet'];
-    $numeroDecision = $_POST['numero'];
-    $dateDecision = $_POST['dd'];
-    $dateDebutAutorisation = $_POST['dda'];
-    $dateFinAutorisation = $_POST['dfa'];
-    $surface = $_POST['surface'];
-    $montant = $_POST['montant'];
-    $typeActivite = $_POST['activite'];
-    $situationActuelle = $_POST['situation'];
-    $decisionDeDirection = $_POST['decision'];
+    $newDossier = new \App\models\dossier\Dossier();
 
-    $newDossier = new \App\models\dossier\Dossier($utilisateur, $sujetAutorisation, $numeroDecision, $dateDecision, $dateDebutAutorisation, $dateFinAutorisation, $surface, $montant, $typeActivite, $situationActuelle, $decisionDeDirection);
+    $newDossier->setUtilisateur($_POST['prenom']) ;
+    $newDossier->setSujetAutorisation($_POST['sujet']);
+    $newDossier->setNumeroDecision($_POST['numero']);
+    $newDossier->setDateDecision($_POST['dd']);
+    $newDossier->setDateDebutAutorisation( $_POST['dda']);
+    $newDossier->setDateFinAutorisation($_POST['dfa']);
+    $newDossier->setSurface($_POST['surface']);
+    $newDossier->setMontant($_POST['montant']);
+    $newDossier->setTypeActivite($_POST['activite']);
+    $newDossier->setSituationActuelle($_POST['situation']);
+    $newDossier->setDecisionDeDirection($_POST['decision']);
+
+
 
     var_dump($newDossier);
     $dossierDao = \App\models\dossier\DossierDaoFactory::getDossierDaoFactory("mysql");

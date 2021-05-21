@@ -13,10 +13,10 @@
 
           public function ajouterDossier($dossier) {
 
-               /*$query = "INSERT INTO `dossier` (`رقم`, `المستغل`, `موضوع الرخصة`, `رقم القرار`, `تاريخ القرار`, `تاريخ بداية الرخصة`, `تاريخ إنتهاء الرخصة`, `المساحة`, `مبلغ الإتاوة السنوية`, `نوعية النشاط`, `الوضعية الحالية`, `الإجراءات المتخذة من طرف هذه المديرية`)
+               $query = "INSERT INTO `dossier`
                             VALUES  (\`:num\`, \`:util\`, \`:sa\`, \`:nd\`, \`:dd\`, \`:dda\`, \`:dfa\`, \`:surface\`, \`:montant\`, \`:ta\`, \`:sa\`, \`:ddd\`)
-                         ";*/
-              $query = "INSERT INTO `dossier` VALUES ('{$dossier->getNumero()}', '{$dossier->getUtilisateur()}', '{$dossier->getSujetAutorisation()}', '{$dossier->getNumeroDecision()}', '{$dossier->getDateDecision()}', '{$dossier->getDateDebutAutorisation()}','{$dossier->getDateFinAutorisation()}', '{$dossier->getSurface()}', '{$dossier->getMontant()}','{$dossier->getTypeActivite()}','{$dossier->getSituationActuelle()}', '{$dossier->getDecisionDeDirection()}') ";
+                         ";
+              //$query = "INSERT INTO `dossier` VALUES ('{$dossier->getNumero()}', '{$dossier->getUtilisateur()}', '{$dossier->getSujetAutorisation()}', '{$dossier->getNumeroDecision()}', '{$dossier->getDateDecision()}', '{$dossier->getDateDebutAutorisation()}','{$dossier->getDateFinAutorisation()}', '{$dossier->getSurface()}', '{$dossier->getMontant()}','{$dossier->getTypeActivite()}','{$dossier->getSituationActuelle()}', '{$dossier->getDecisionDeDirection()}') ";
               //$query = "SELECT * FROM `dossier`";
               $result = $this->connect->exec($query);
               /*
@@ -43,6 +43,50 @@
                     
           }
 
+          public  function selectionnerDossier($did)
+          {
+              // TODO: Implement selectionnerDossier() method.
+              $query = "SELECT * FROM `dossier` WHERE `numero` = :id";
+              $stmt = $this->connect->prepare($query);
+              $result = $stmt->execute([
+                  ':id' => $did
+              ]);
+              if ($result) {
+                  return $result->fetchObject("\App\Models\Dossier");
+              }
+          }
+
+          public function archiverDossier($dossier)
+          {
+              // TODO: Implement archiverDossier() method.
+              $query = "UPDATE `archive` FROM`dossier` WHERE numero = :id";
+              $stmt = $this->connect->prepare($query);
+              $result = $stmt->execute([
+                  ":id" => $dossier->getNumero()
+              ]);
+              if ($result) {
+                  return true;
+              } else {
+                  return false;
+              }
+          }
+         public function afficherTousDossier()
+         {
+             $query = "select * from  `dossier` ";
+             $stmt = $this->connect->prepare($query);
+             $result = $stmt->execute();
+
+
+
+             if ($result) {
+
+                  return $dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier");
+
+             } else {
+                 // Show database errors
+                 return null;
+             }
+         }
 
 
      }

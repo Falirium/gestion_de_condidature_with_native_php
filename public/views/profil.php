@@ -28,6 +28,8 @@
         <div id = "select_form">
             <button><a href="?action=ajouter">Ajouter un nouveau dossier</a> </button>
             <button><a href="?action=consulter">Consulter un dossier </a></button>
+            <button><a href="?action=archiver&did=3">Archiver un dossier </a></button>
+
         </div>
 
         <div id = "select_form">
