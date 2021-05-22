@@ -121,6 +121,22 @@
              }
          }
 
+         public function est_Paye($dossier)
+         {
+             // TODO: Implement est_Paye() method.
+             $query = "SELECT * FROM `paiement` WHERE dossier_id = :did";
+             $stmt = $this->connect->prepare($query);
+             $result = $stmt->execute([
+                 ':did' => $dossier->getNumero()
+             ]);
+
+             if ($result || ($result && $dossier->getArchive() === 1)) {
+                 return false;
+             } else {
+                 return true;
+             }
+         }
+
 
      }
 

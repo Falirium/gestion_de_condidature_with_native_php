@@ -9,6 +9,8 @@
           public function archiverDossier($dossier);
           public function afficherTousDossier($archiveValue);
 
+          public function est_Paye($dossier);
+
      }
 
      

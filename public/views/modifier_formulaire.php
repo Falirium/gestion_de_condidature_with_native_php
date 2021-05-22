@@ -128,7 +128,7 @@ if (isset($_GET['did']) && isset($_GET['action'])) {
     <table class = "tab_form">
         <tr>
             <td class = "form_td">
-                <center><input type = "submit" name = "GO" value = "Ajouter" class = "form_input_2"></center>
+                <center><input type = "submit" name = "GO" value = "Modifier" class = "form_input_2"></center>
             </td>
         </tr>
     </table>

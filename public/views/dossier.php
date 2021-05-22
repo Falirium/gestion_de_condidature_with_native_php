@@ -54,10 +54,8 @@ function afficher($dossiers) {
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getSituationActuelle()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getDecisionDeDirection()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getDateDecision()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getArchive()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='../controllers/archiverDossier.php?did={$dossiers->getNumero()}'>Archiver</a></button></td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='did={$dossiers->getNumero()}&action=modifier'>Modifier</a></button></td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='profil.php?action=consulter&id=3'>Consulter</a></button></td></tr>";
+                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getArchive()."</td>";
+
 
             echo $row;
         
@@ -91,7 +89,7 @@ function afficher($dossiers) {
     </nav>
 
     <article>
-        <h1 align = "center">Nouveau dossier  !</h1>
+        <h1 align = "center">Dossiers!</h1>
         <div class = "cand_info" align = "center">Merci de founir des informations exactes, dans le cas ou vous remarquez un problème prière de contacter l'administrateur <a href = "mailto: admin@webmaster.com" >admin@webmaster.com</a></div>
         <div>
 
@@ -102,6 +100,8 @@ function afficher($dossiers) {
                 if (isset($_GET['action'])) {
                     if ($_GET['action'] === "modifier") {
                         require_once "modifier_formulaire.php";
+                    } else {
+                        //Renvoie vers la liste des dossiers
                     }
                 } else {
 
@@ -110,16 +110,23 @@ function afficher($dossiers) {
                 //echo gettype($dossier);
                 afficher($dossier); ?>
             <div>
-                <button><a href="">Archiver</a></button>
-                <button><a href="">Modifier</a></button>
-                <button><a href="">Historique de paiments</a></button>
+>                <button><a href=<?php echo "?did={$dossier->getNumero()}&action=modifier" ?>>Modifier</a></button>
+                <button><a href=<?php echo "paiement.php?did={$dossier->getNumero()}" ?>>Historique de paiements</a></button>
+                <?php
+
+                if (!$dossierDoa->est_Paye($dossier)) {
+                    echo "<button><a href='paiement.php?did={$dossier->getNumero()}&action=payer'>Payer</a></button>";
+                }
+                ?>
+
+
 
             </div>
 
             <?php
                 }
             } else {
-                $dossiers = $dossierDoa->afficherTousDossier(0);
+                $dossiers = $dossierDoa->afficherTousDossier(1);
 
                 afficher($dossiers);
             }

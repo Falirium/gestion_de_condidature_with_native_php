@@ -29,13 +29,14 @@
     </nav>
 
     <article>
-        <h1 align = "center">Nouveau dossier  !</h1>
+        <h1 align = "center">Tableau de bord</h1>
         <div class = "cand_info" align = "center">Merci de founir des informations exactes, dans le cas ou vous remarquez un problème prière de contacter l'administrateur <a href = "mailto: admin@webmaster.com" >admin@webmaster.com</a></div>
 
         <div id = "select_form">
             <button><a href="?action=ajouter">Ajouter un nouveau dossier</a> </button>
             <button><a href="?action=consulter">Consulter un dossier </a></button>
             <button><a href="dossier.php?did=3">Archiver un dossier </a></button>
+            <button><a href="paiement.php">Afficher les paiements </a></button>
 
         </div>
 
