@@ -36,14 +36,13 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" type="image/ico" href="css/img/logo.ico"/>
 </head>
-    <header>
-        <h2>Direction-Plateforme</h2>
-        <div class = "header_right">
-            <a href = '?sconnexion=1' class = 'a_button'>Connexion</a>"
-
-        </div>
-
-    </header>
+<h2>Direction-Plateforme</h2>
+<header>
+    <h2>Direction-Plateforme</h2>
+    <div class = "header_right">
+        <a href = '#' class = 'a_button'>Connexion</a>
+    </div>
+</header>
     <section>
         
         

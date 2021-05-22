@@ -20,9 +20,7 @@
     <link rel="icon" type="image/ico" href="../css/img/logo.ico"/>
 </head>
 <body>
-<header>
-    <h2>Direction.-Plateforme</h2>
-</header>
+<?php require_once "../header.php"?>
 <section>
     <nav>
         <!--Empty-->
@@ -34,8 +32,8 @@
 
         <div id = "select_form">
             <button><a href="?action=ajouter">Ajouter un nouveau dossier</a> </button>
-            <button><a href="?action=consulter">Consulter un dossier </a></button>
-            <button><a href="dossier.php?did=3">Archiver un dossier </a></button>
+            <button><a href="?action=consulter">Consulter les dossiers </a></button>
+
             <button><a href="paiement.php">Afficher les paiements </a></button>
 
         </div>

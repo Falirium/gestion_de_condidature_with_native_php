@@ -65,9 +65,7 @@ function afficher($paiements) {
     <link rel="icon" type="image/ico" href="../css/img/logo.ico"/>
 </head>
 <body>
-<header>
-    <h2>Direction.-Plateforme</h2>
-</header>
+<?php require_once "../header.php"?>
 <section>
     <nav>
         <!--Empty-->

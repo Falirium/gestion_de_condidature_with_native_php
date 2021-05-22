@@ -12,7 +12,15 @@
         header("Refresh:1; url=../");
     }
 
-    //Function to display an array of Dossier | or single object Dossier
+// Gere l'affichage des dossiers archivés
+$archive = 0;
+if (isset($_POST['archive'])) {
+    $archive = $_POST['archive'];
+} else {
+    $archive = 0;
+}
+
+//Function to display an array of Dossier | or single object Dossier
 function afficher($dossiers) {
     echo '<table style="border: 1px solid black; border-collapse: collapse; width: 100%">';
 
@@ -80,9 +88,7 @@ function afficher($dossiers) {
     <link rel="icon" type="image/ico" href="../css/img/logo.ico"/>
 </head>
 <body>
-<header>
-    <h2>Direction.-Plateforme</h2>
-</header>
+<?php require_once "../header.php"?>
 <section>
     <nav>
         <!--Empty-->
@@ -94,6 +100,16 @@ function afficher($dossiers) {
         <div>
 
         </div>
+        <!--
+        <div>
+
+            <form action="" method="post">
+                <input type="checkbox" id="archive" name="archive" value="1" >
+                <label for="archive">Afficher les dossiers archivés</label>
+                <input type="submit" value="Actualiser">
+            </form>
+        </div>
+        -->
         <div id = "select_form">
             <?php
             if (isset($_GET['did'])) {
@@ -126,7 +142,7 @@ function afficher($dossiers) {
             <?php
                 }
             } else {
-                $dossiers = $dossierDoa->afficherTousDossier(1);
+                $dossiers = $dossierDoa->afficherTousDossier($archive);
 
                 afficher($dossiers);
             }
