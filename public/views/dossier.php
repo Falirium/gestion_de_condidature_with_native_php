@@ -22,33 +22,29 @@ if (isset($_POST['archive'])) {
 
 //Function to display an array of Dossier | or single object Dossier
 function afficher($dossiers) {
-    echo '<table style="border: 1px solid black; border-collapse: collapse; width: 100%">';
+
 
     // If it is an array of Dossier
     if (gettype($dossiers) === "array")  {
+        echo '<table style="border: 1px solid black; border-collapse: collapse; width: 100%">';
         foreach ($dossiers as $dossier) {
 
             $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getNumero()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getUtilisateur()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getSujetAutorisation()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getNumeroDecision()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getDateDebutAutorisation()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getDateFinAutorisation()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getSurface()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getMontant()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getTypeActivite()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getSituationActuelle()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getDecisionDeDirection()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getDateDecision()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getArchive()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='../controllers/archiverDossier.php?did={$dossier->getNumero()}'>Archiver</a></button></td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?did={$dossier->getNumero()}&action=modifier'>Modifier</a></button></td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?did={$dossier->getNumero()}'>Consulter</a></button></td></tr>";
 
             echo $row;
         }
+
+        echo "</table>";
     } elseif (gettype($dossiers) === "object") {
-        
+        /*
 
             $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getNumero()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getUtilisateur()."</td>"
@@ -63,16 +59,40 @@ function afficher($dossiers) {
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getDecisionDeDirection()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getDateDecision()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossiers->getArchive()."</td>";
+            */
+
+            $row = "
+             <div style='width: 100%; margin: 20px auto;'>
+               <div style='float: left; width: 50%'>
+                    <div><span style=' width: 50%; font-weight: bold '>Numero   </span><span style=' width: 50%; float: right; '>{$dossiers->getNumero()}</span></div>
+                        <div><span style=' width: 50%; font-weight: bold '>Utilisateur   </span><span style=' width: 50%; float: right; '>{$dossiers->getUtilisateur()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Sujet d'autorisation  </span><span style=' width: 50%; float: right; '>{$dossiers->getSujetAutorisation()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Numero de decision  </span><span style=' width: 50%; float: right; '>{$dossiers->getNumeroDecision()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Date de decision   </span><span style=' width: 50%; float: right; '>{$dossiers->getDateDecision()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Date debut autorisation  </span><span style=' width: 50%; float: right; '>{$dossiers->getDateDebutAutorisation()}</span></div>
+               </div>
+               <div style='float: right; width: 50%'>
+                    <div><span style=' width: 50%; font-weight: bold '>Date fin autorisation   </span><span style=' width: 50%; float: right; '>{$dossiers->getDateFinAutorisation()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Surface (en m²)  </span><span style=' width: 50%; float: right; '>{$dossiers->getSurface()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Montant (en DH)  </span><span style=' width: 50%; float: right; '>{$dossiers->getMontant()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Type d'activité   </span><span style=' width: 50%; float: right; '>{$dossiers->getTypeActivite()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Situation actuelle   </span><span style=' width: 50%; float: right; '>{$dossiers->getSituationActuelle()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Decision de direction   </span><span style=' width: 50%; float: right; '>{$dossiers->getDecisionDeDirection()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Archivé   </span><span style=' width: 50%; float: right; '>{$dossiers->getArchive()}</span></div>
+               </div>
+            </div>
+            ";
 
 
             echo $row;
-        
+
+
     }
     
     // If it is one Object of Dossier
 
     
-    echo "</table>";
+
 
 
 }
@@ -129,7 +149,7 @@ function afficher($dossiers) {
 >                <button><a href=<?php echo "?did={$dossier->getNumero()}&action=modifier" ?>>Modifier</a></button>
                 <button><a href=<?php echo "paiement.php?did={$dossier->getNumero()}" ?>>Historique de paiements</a></button>
                 <?php
-
+                //var_dump($dossierDoa->est_Paye($dossier));
                 if (!$dossierDoa->est_Paye($dossier)) {
                     echo "<button><a href='paiement.php?did={$dossier->getNumero()}&action=payer'>Payer</a></button>";
                 }

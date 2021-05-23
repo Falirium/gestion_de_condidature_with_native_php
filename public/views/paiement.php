@@ -14,42 +14,47 @@ $paiementDao = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory("my
 function afficher($paiements) {
     global $paiementDao;
 
-    echo '<table style="border: 1px solid black; border-collapse: collapse; width: 100%">';
-    echo "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">numero de paiement</td>"
-        ."<td style=\"border: 1px solid black; border-collapse: collapse;\">numero de dossier</td>"
-        ."<td style=\"border: 1px solid black; border-collapse: collapse;\">utilisateur</td>"
-        ."<td style=\"border: 1px solid black; border-collapse: collapse;\">sujet autorisation</td>"
-        ."<td style=\"border: 1px solid black; border-collapse: collapse;\">montant</td></tr>";
+
     if (gettype($paiements) === "object") {
         // Get dossier associé à la fiche de paiment
 
 
         $dossier = $paiementDao->selectionnerDossierParPaiment($paiements->getId());
-        $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$paiements->getId()."</td>"
-            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getNumero()."</td>"
-            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getUtilisateur()."</td>"
-            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getSujetAutorisation()."</td>"
-            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getMontant()."</td>"
-            ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='dossier.php?did={$dossier->getNumero()}'>Consulter le dossier</a></button></td></tr>";
+        $row = "
+        <div style='width: 80%; margin: auto;'>
+                    <div><span style=' width: 50%; font-weight: bold'>Numero de paiment </span><span style='width: 50%; float: right;'>{$paiements->getId()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold'>Utilisateur   </span><span >{$dossier->getUtilisateur()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold'>Montant  </span><span >{$dossier->getMontant()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold'>Type d'activité   </span><span >{$dossier->getTypeActivite()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold'>Date fin autorisation  </span><span >{$dossier->getDateFinAutorisation() }</span></div>
+        </div>
+        ";
 
         echo $row;
     } elseif (gettype($paiements) === "array") {
+        echo '<table style="border: 1px solid black; border-collapse: collapse; width: 100%">';
+        echo "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">numero de paiement</td>"
+
+            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">utilisateur</td>"
+
+            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">montant</td></tr>";
         foreach ($paiements as $paiement) {
 
             $dossier = $paiementDao->selectionnerDossierParPaiment($paiement->getId());
 
             $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$paiement->getId()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getNumero()."</td>"
+
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getUtilisateur()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getSujetAutorisation()."</td>"
+
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getMontant()."</td>"
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?pid={$paiement->getId()}'>Consulter</a></button></td></tr>";
 
             echo $row;
         }
+        echo "</table>";
     }
 
-    echo "</table>";
+
 }
 
 ?>

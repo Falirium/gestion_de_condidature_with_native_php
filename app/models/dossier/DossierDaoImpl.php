@@ -13,13 +13,13 @@
 
           public function ajouterDossier($dossier) {
 
-               $query = "INSERT INTO `dossier`
-                            VALUES  (\`:num\`, \`:util\`, \`:sa\`, \`:nd\`, \`:dd\`, \`:dda\`, \`:dfa\`, \`:surface\`, \`:montant\`, \`:ta\`, \`:sa\`, \`:ddd\`)
+              $query = "INSERT INTO `dossier`
+                            VALUES  (:num, :util, :sa, :nd, :dd, :dda, :dfa, :surface, :montant, :ta, :sa, :ddd, :archive)
                          ";
               //$query = "INSERT INTO `dossier` VALUES ('{$dossier->getNumero()}', '{$dossier->getUtilisateur()}', '{$dossier->getSujetAutorisation()}', '{$dossier->getNumeroDecision()}', '{$dossier->getDateDecision()}', '{$dossier->getDateDebutAutorisation()}','{$dossier->getDateFinAutorisation()}', '{$dossier->getSurface()}', '{$dossier->getMontant()}','{$dossier->getTypeActivite()}','{$dossier->getSituationActuelle()}', '{$dossier->getDecisionDeDirection()}') ";
               //$query = "SELECT * FROM `dossier`";
-              $result = $this->connect->exec($query);
-              /*
+              //$result = $this->connect->exec($query);
+              
                $stmt = $this->connect->prepare($query);
                $result = $stmt->execute([
                     ':num' => $dossier->getNumero(),
@@ -33,9 +33,9 @@
                     ':montant' => $dossier->getMontant(),
                     ':ta' => $dossier->getTypeActivite(),
                     ':sa' => $dossier->getSituationActuelle(),
-                    ':ddd' => $dossier->getDecisionDeDirection()
-               ]);*/
-               var_dump($dossier->getTypeActivite() , $query);
+                    ':ddd' => $dossier->getDecisionDeDirection(),
+                   ':archive' => 1
+               ]);
               var_dump($result);
                if ($result)
                    return true;
@@ -130,7 +130,7 @@
                  ':did' => $dossier->getNumero()
              ]);
 
-             if ($result || ($result && $dossier->getArchive() === 1)) {
+             if ($dossier->getArchive() === 1) {
                  return false;
              } else {
                  return true;
