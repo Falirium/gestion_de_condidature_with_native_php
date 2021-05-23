@@ -3,6 +3,8 @@
      
      namespace App\models\dossier ;
      
+     use Faker\Factory;
+
      class DossierDaoImpl implements DossierDao{
 
           private $connect = null;
@@ -12,15 +14,19 @@
           }
 
           public function ajouterDossier($dossier) {
+              $faker = Factory::create();
 
-              $query = "INSERT INTO `dossier`
-                            VALUES  (:num, :util, :sa, :nd, :dd, :dda, :dfa, :surface, :montant, :ta, :sa, :ddd, :archive)
+              $dossier->setNumero($faker->randomDigit());
+
+              $query = "INSERT INTO `dossier` (`numero`, `utilisateur`, `sujetAutorisation`, `numeroDecision`, `dateDecision`, `dateDebutAutorisation`, `dateFinAutorisation`, `surface`, `montant`, `typeActivite`, `situationActuelle`, `decisionDeDirection`, `archive`)
+                            VALUES  (':num', ':util', ':sa', ':nd', ':dd', ':dda', ':dfa', ':surface', ':montant', ':ta', ':sa', ':ddd', ':archive')
                          ";
               //$query = "INSERT INTO `dossier` VALUES ('{$dossier->getNumero()}', '{$dossier->getUtilisateur()}', '{$dossier->getSujetAutorisation()}', '{$dossier->getNumeroDecision()}', '{$dossier->getDateDecision()}', '{$dossier->getDateDebutAutorisation()}','{$dossier->getDateFinAutorisation()}', '{$dossier->getSurface()}', '{$dossier->getMontant()}','{$dossier->getTypeActivite()}','{$dossier->getSituationActuelle()}', '{$dossier->getDecisionDeDirection()}') ";
               //$query = "SELECT * FROM `dossier`";
               //$result = $this->connect->exec($query);
               
-               $stmt = $this->connect->prepare($query);
+              var_dump($dossier);
+              $stmt = $this->connect->prepare($query);
                $result = $stmt->execute([
                     ':num' => $dossier->getNumero(),
                     ':util' => $dossier->getUtilisateur(),
@@ -34,7 +40,7 @@
                     ':ta' => $dossier->getTypeActivite(),
                     ':sa' => $dossier->getSituationActuelle(),
                     ':ddd' => $dossier->getDecisionDeDirection(),
-                   ':archive' => 1
+                    ':archive' => 1
                ]);
               var_dump($result);
                if ($result)
