@@ -42,7 +42,7 @@
                     ':ddd' => $dossier->getDecisionDeDirection(),
                     ':archive' => 1
                ]);
-              var_dump($result);
+              //var_dump($result);
                if ($result)
                    return true;
                else return false;
@@ -70,7 +70,7 @@
                  ':ddd' => $dossier->getDecisionDeDirection(),
                  ':id' =>$dossier->getNumero()
              ]);
-              var_dump($result);
+              //var_dump($result);
               if ($result)
                   return true;
               else return false;
