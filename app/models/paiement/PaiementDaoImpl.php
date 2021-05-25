@@ -14,22 +14,32 @@ class PaiementDaoImpl implements PaiementDao {
     {
         // TODO: Implement ajouterPaiement() method.
         $query = "INSERT INTO `paiement`
-                    VALUES (:id, :did, :montant);
+                    VALUES (:id, :did, :beneficiaire, :redevance,:montant, :nbv,:dbv,:dp,:bg,:fs,:dor,:obs);
                     ";
         $stmt= $this->connect->prepare($query);
         $result = $stmt->execute([
             ':id' => $paiement->getId(),
-            'did' => $paiement->getDossierId(),
-            ':montant' => $paiement->getMontant()
+            ':did' => $paiement->getDossierId(),
+            ':beneficiaire' =>$paiement->getBeneficiaire(),
+            ':redevance' =>$paiement->getRedevance(),
+            ':montant' => $paiement->getMontant(),
+            ':nbv'=>$paiement->getNBV(),
+            ':dbv'=>$paiement->getDateBV(),
+            ':dp'=>$paiement->getDateDePaiement(),
+            ':bg'=>$paiement->getBg(),
+            ':fs'=>$paiement->getFs(),
+            ':dor'=>$paiement->getDateDeOR(),
+            ':obs'=>$paiement->getObservation()
+
         ]);
 
         $queryUpdate = "UPDATE `dossier` 
                         SET archive = 0 
                         WHERE numero = :did";
         $stmtUpdate = $this->connect->prepare($queryUpdate);
-        var_dump($paiement->getDossierId());
+        var_dump($paiement->getDossierNumero());
         $resultUpdate = $stmtUpdate->execute([
-           ':did' => $paiement->getDossierId()
+           ':did' => $paiement->getDossierNumero()
         ]);
 
         if ($result && $resultUpdate) {

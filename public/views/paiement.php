@@ -17,37 +17,53 @@ function afficher($paiements) {
 
     if (gettype($paiements) === "object") {
         // Get dossier associé à la fiche de paiment
-
-
         $dossier = $paiementDao->selectionnerDossierParPaiment($paiements->getId());
-        $row = "
-        <div style='width: 80%; margin: auto;'>
-                    <div><span style=' width: 50%; font-weight: bold'>Numero de paiment </span><span style='width: 50%; float: right;'>{$paiements->getId()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold'>Utilisateur   </span><span >{$dossier->getUtilisateur()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold'>Montant  </span><span >{$dossier->getMontant()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold'>Type d'activité   </span><span >{$dossier->getTypeActivite()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold'>Date fin autorisation  </span><span >{$dossier->getDateFinAutorisation() }</span></div>
-        </div>
-        ";
 
-        echo $row;
+
+
+            $row = "<div style='width: 100%; margin: 20px auto;'>
+               <div style='float: left; width: 50%'>
+                    <div><span style=' width: 50%; font-weight: bold '>N° de dossier  </span><span style=' width: 50%; float: right; '>{$paiements->getId()}</span></div>
+                        <div><span style=' width: 50%; font-weight: bold '>Beneficiaire  </span><span style=' width: 50%; float: right; '>{$dossier->getUtilisateur()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> Redevance  </span><span style=' width: 50%; float: right; '>{$paiements->getRedevance()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>N° BV  </span><span style=' width: 50%; float: right; '>{$paiements->getNBV()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Date BV </span><span style=' width: 50%; float: right; '>{$paiements->getDateBV()}</span></div>
+               </div>
+               <div style='float: right; width: 50%'>
+                    <div><span style=' width: 50%; font-weight: bold '>Date de paiement   </span><span style=' width: 50%; float: right; '>{$paiements->getDateDePaiement()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> N° de OR: BG  </span><span style=' width: 50%; float: right; '>{$paiements->getBg()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> N° de OR: FS  </span><span style=' width: 50%; float: right; '>{$paiements->getFs()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> Date de OR  </span><span style=' width: 50%; float: right; '>{$paiements->getDateDeOR()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Obseravation  </span><span style=' width: 50%; float: right; '>{$paiements->getObseravtion()}</span></div>
+               </div>
+            </div>
+            ";
+
+            echo $row;
+
     } elseif (gettype($paiements) === "array") {
         echo '<table style="border: 1px solid black; border-collapse: collapse; width: 100%">';
-        echo "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">numero de paiement</td>"
+        echo "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">N° de dossier</td>"
 
-            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">utilisateur</td>"
+            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">Beneficiaire</td>"
+            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">Montant(dh)</td>"
 
-            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">montant</td></tr>";
+            ."<td style=\"border: 1px solid black; border-collapse: collapse;\">Redevance</td></tr>";
+
         foreach ($paiements as $paiement) {
 
             $dossier = $paiementDao->selectionnerDossierParPaiment($paiement->getId());
+            var_dump($dossier);
 
             $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$paiement->getId()."</td>"
 
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getUtilisateur()."</td>"
 
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getMontant()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?pid={$paiement->getId()}'>Consulter</a></button></td></tr>";
+                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$paiement->getRedevance()."</td>"
+
+
+                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?pid={$dossier->getNumero()}'>Consulter</a></button></td></tr>";
 
             echo $row;
         }
@@ -88,7 +104,7 @@ function afficher($paiements) {
                 $did = $_GET['did'];
                 if (isset($_GET['action'])) {
                     //Formulaire de paiement pour un dossier
-                    if ($_GET['action'] === "payer") {
+                    if ($_GET['action'] === "Ajouter") {
                         // Formulaire de paiment de dossier
                         require_once "formulaire_paiement.php";
                     }

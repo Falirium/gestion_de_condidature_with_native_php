@@ -20,12 +20,12 @@
 
 
 
-    var_dump($newDossier);
+    //var_dump($newDossier);
     $dossierDao = \App\models\dossier\DossierDaoFactory::getDossierDaoFactory("mysql");
 
     if($dossierDao->ajouterDossier($newDossier)) {
-        echo 'bssatek';
+        echo 'Le dossier est ajouté avec succés';
     } else {
-        echo '3awd';
+        echo 'Dossier non ajouté' ;
     }
 ?>

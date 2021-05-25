@@ -75,11 +75,11 @@
             <td class = "form_td">
                 <select name="activite" class = "form_input" required>
                     <option value="activite"> : نوعية النشاط </option>
-                    <option value="DS">أنشطة سياحية </option>
-                    <option value="DSE">أنشطة تجارية</option>
-                    <option value="ACT-F">مصانع</option>
-                    <option value="SD">نقط تفريغ الأسماك </option>
-                    <option value="SE">محطة الضخ </option>
+                    <option value="أنشطة سياحية">أنشطة سياحية </option>
+                    <option value="أنشطة تجارية">أنشطة تجارية</option>
+                    <option value="مصانع">مصانع</option>
+                    <option value="نقط تفريغ الأسماك ">نقط تفريغ الأسماك </option>
+                    <option value="محطة الضخ">محطة الضخ </option>
                 </select>
             </td>
         </tr>

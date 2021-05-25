@@ -6,11 +6,20 @@ require __DIR__ . "/../../vendor/autoload.php";
 
 $newPaiement = new \App\models\paiement\Paiement();
 
-$faker = \Faker\Factory::create();
+//$faker = \Faker\Factory::create();
 
-$newPaiement->setId($faker->randomDigit());
+$newPaiement->setId($_POST['id']);
 $newPaiement->setDossierId($_POST['num']) ;
+$newPaiement->setBeneficiaire($_POST['beneficiaire']);
+$newPaiement->setRedevance($_POST['redevance']);
 $newPaiement->setMontant($_POST['montant']);
+$newPaiement->setNBV($_POST['nbv']);
+$newPaiement->setDateBV($_POST['dbv']);
+$newPaiement->setDateDePaiement($_POST['dp']);
+$newPaiement->setBg($_POST['bg']);
+$newPaiement->setFs($_POST['fs']);
+$newPaiement->setDateDeOR($_POST['dor']);
+$newPaiement->setObservation($_POST['obs']);
 
 
 

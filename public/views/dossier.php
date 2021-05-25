@@ -13,7 +13,7 @@
     }
 
 // Gere l'affichage des dossiers archivés
-$archive = 0;
+$archive = 1;
 if (isset($_POST['archive'])) {
     $archive = $_POST['archive'];
 } else {
@@ -149,7 +149,7 @@ function afficher($dossiers) {
 >                <button><a href=<?php echo "?did={$dossier->getNumero()}&action=modifier" ?>>Modifier</a></button>
                 <button><a href=<?php echo "paiement.php?did={$dossier->getNumero()}" ?>>Historique de paiements</a></button>
                 <?php
-                //var_dump($dossierDoa->est_Paye($dossier));
+                var_dump($dossierDoa->est_Paye($dossier));
                 if (!$dossierDoa->est_Paye($dossier)) {
                     echo "<button><a href='paiement.php?did={$dossier->getNumero()}&action=payer'>Payer</a></button>";
                 }
@@ -165,6 +165,7 @@ function afficher($dossiers) {
                 $dossiers = $dossierDoa->afficherTousDossier($archive);
 
                 afficher($dossiers);
+
             }
 
             ?>

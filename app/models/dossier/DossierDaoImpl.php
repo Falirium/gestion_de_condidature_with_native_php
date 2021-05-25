@@ -110,6 +110,7 @@
 
 
 
+
              if ($result) {
 
                   return $dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier");
