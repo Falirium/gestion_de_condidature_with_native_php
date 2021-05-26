@@ -37,9 +37,9 @@ class PaiementDaoImpl implements PaiementDao {
                         SET archive = 0 
                         WHERE numero = :did";
         $stmtUpdate = $this->connect->prepare($queryUpdate);
-        var_dump($paiement->getDossierNumero());
+        //var_dump($paiement->getDossierNumero());
         $resultUpdate = $stmtUpdate->execute([
-           ':did' => $paiement->getDossierNumero()
+           ':did' => $paiement->getDossierId()
         ]);
 
         if ($result && $resultUpdate) {
@@ -77,6 +77,32 @@ class PaiementDaoImpl implements PaiementDao {
         } else {
             return null;
         }
+    }
+    public function modifierPaiement($paiement) {
+        $query = "UPDATE `paiement` 
+                        SET `Beneficiaire` = :beneficiaire, `Redevance` = :redevance, `Montant` = :montant, `N°BV` = :nbv, `Date_BV` = :dbv, `date_de_paiement` = :dp, `BG` = :bg, `FS` = :fs, `Date_de_OR` = :dor, `Observation` = :obs
+                        WHERE dossier_id = :did";
+
+        $stmt = $this->connect->prepare($query);
+        $result = $stmt->execute([
+
+            ':beneficiaire' => $paiement->getBeneficiaire(),
+            ':redevance' => $paiement->getRedevance(),
+            ':montant' => $paiement->getMontant(),
+            ':nbv' => $paiement->getNBV(),
+            ':dbv' => $paiement->getDate_BV() ,
+            ':dp' => $paiement->getDate_de_paiement(),
+            ':bg' => $paiement->getBg(),
+            ':fs' => $paiement->getFs(),
+            ':dor' => $paiement->getDate_de_OR(),
+            ':obs' => $paiement->getObservation(),
+
+            ':did' =>$paiement->getDossierId()
+        ]);
+        //var_dump($result);
+        if ($result)
+            return true;
+        else return false;
     }
 
     public function afficherTousPaiements()

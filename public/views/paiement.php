@@ -23,18 +23,18 @@ function afficher($paiements) {
 
             $row = "<div style='width: 100%; margin: 20px auto;'>
                <div style='float: left; width: 50%'>
-                    <div><span style=' width: 50%; font-weight: bold '>N° de dossier  </span><span style=' width: 50%; float: right; '>{$paiements->getId()}</span></div>
-                        <div><span style=' width: 50%; font-weight: bold '>Beneficiaire  </span><span style=' width: 50%; float: right; '>{$dossier->getUtilisateur()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '> Redevance  </span><span style=' width: 50%; float: right; '>{$paiements->getRedevance()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '>N° BV  </span><span style=' width: 50%; float: right; '>{$paiements->getNBV()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '>Date BV </span><span style=' width: 50%; float: right; '>{$paiements->getDateBV()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>N° de dossier : </span><span style=' width: 50%; float: right; '>{$paiements->getDossierId()}</span></div>
+                        <div><span style=' width: 50%; font-weight: bold '>Beneficiaire :  </span><span style=' width: 50%; float: right; '>{$dossier->getUtilisateur()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> Redevance : </span><span style=' width: 50%; float: right; '>{$paiements->getRedevance()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>N° BV : </span><span style=' width: 50%; float: right; '>{$paiements->getNBV()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Date BV : </span><span style=' width: 50%; float: right; '>{$paiements->getDateBV()}</span></div>
                </div>
                <div style='float: right; width: 50%'>
-                    <div><span style=' width: 50%; font-weight: bold '>Date de paiement   </span><span style=' width: 50%; float: right; '>{$paiements->getDateDePaiement()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '> N° de OR: BG  </span><span style=' width: 50%; float: right; '>{$paiements->getBg()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '> N° de OR: FS  </span><span style=' width: 50%; float: right; '>{$paiements->getFs()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '> Date de OR  </span><span style=' width: 50%; float: right; '>{$paiements->getDateDeOR()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '>Obseravation  </span><span style=' width: 50%; float: right; '>{$paiements->getObseravtion()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Date de paiement :  </span><span style=' width: 50%; float: right; '>{$paiements->getDateDePaiement()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> N° de OR->BG:  </span><span style=' width: 50%; float: right; '>{$paiements->getBg()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> N° de OR->FS:  </span><span style=' width: 50%; float: right; '>{$paiements->getFs()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '> Date de OR : </span><span style=' width: 50%; float: right; '>{$paiements->getDateDeOR()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Obseravation : </span><span style=' width: 50%; float: right; '>{$paiements->getObservation()}</span></div>
                </div>
             </div>
             ";
@@ -53,9 +53,9 @@ function afficher($paiements) {
         foreach ($paiements as $paiement) {
 
             $dossier = $paiementDao->selectionnerDossierParPaiment($paiement->getId());
-            var_dump($dossier);
+            //var_dump($paiement);
 
-            $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$paiement->getId()."</td>"
+            $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$paiement->getDossierId()."</td>"
 
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getUtilisateur()."</td>"
 
@@ -63,7 +63,10 @@ function afficher($paiements) {
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$paiement->getRedevance()."</td>"
 
 
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?pid={$dossier->getNumero()}'>Consulter</a></button></td></tr>";
+                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?pid={$paiement->getId()}'>Consulter</a></button></td>
+
+                 .<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='modifier-paiement.php?did={$dossier->getNumero()}&action=modifier'>Modifier</a></button>
+</tr>";
 
             echo $row;
         }
@@ -103,11 +106,13 @@ function afficher($paiements) {
             if (isset($_GET['did'])) {
                 $did = $_GET['did'];
                 if (isset($_GET['action'])) {
+
                     //Formulaire de paiement pour un dossier
-                    if ($_GET['action'] === "Ajouter") {
+                    if ($_GET['action'] === "Payer") {
                         // Formulaire de paiment de dossier
                         require_once "formulaire_paiement.php";
                     }
+
                 } else {
                     // Les fiches de paie pour ce dossier
                     $paiements = $paiementDao->afficherPaiementsParDossier($did);
@@ -118,20 +123,26 @@ function afficher($paiements) {
             } elseif(isset($_GET['pid'])) {
                 //Show single informations about single Paiment
                 $pid = $_GET['pid'];
-                $paiment = $paiementDao->selectionnerPaiement($pid);
+                /*if (isset($_GET['action'])) {
+                    if ($_GET['action'] === "Modifier") {
+                        // Formulaire de paiment de dossier
+                        require_once "modifier-paiement.php";
+                    }*/
 
-                afficher($paiment);
+                    $paiment = $paiementDao->selectionnerPaiement($pid);
 
-            } else {
-                //Show all paiement objects
+                    afficher($paiment);
 
-                $paiements = $paiementDao->afficherTousPaiements();
+                } else {
+                    //Show all paiement objects
 
-                afficher($paiements);
+                    $paiements = $paiementDao->afficherTousPaiements();
+
+                    afficher($paiements);
+
+
 
             }
-
-
 
             ?>
 
@@ -144,7 +155,7 @@ function afficher($paiements) {
 
 
 
-        <p>Retour vers la page precedente : <a href = "paiement.php"> ici </a></p>
+        <p>Retour vers la page precedente : <a href = "dossier.php"> ici </a></p>
     </article>
     <aside>
         <!--Empty-->

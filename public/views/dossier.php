@@ -65,7 +65,7 @@ function afficher($dossiers) {
              <div style='width: 100%; margin: 20px auto;'>
                <div style='float: left; width: 50%'>
                     <div><span style=' width: 50%; font-weight: bold '>Numero   </span><span style=' width: 50%; float: right; '>{$dossiers->getNumero()}</span></div>
-                        <div><span style=' width: 50%; font-weight: bold '>Utilisateur   </span><span style=' width: 50%; float: right; '>{$dossiers->getUtilisateur()}</span></div>
+                        <div><span style=' width: 50%; font-weight: bold '>Beneficiaire  </span><span style=' width: 50%; float: right; '>{$dossiers->getUtilisateur()}</span></div>
                     <div><span style=' width: 50%; font-weight: bold '>Sujet d'autorisation  </span><span style=' width: 50%; float: right; '>{$dossiers->getSujetAutorisation()}</span></div>
                     <div><span style=' width: 50%; font-weight: bold '>Numero de decision  </span><span style=' width: 50%; float: right; '>{$dossiers->getNumeroDecision()}</span></div>
                     <div><span style=' width: 50%; font-weight: bold '>Date de decision   </span><span style=' width: 50%; float: right; '>{$dossiers->getDateDecision()}</span></div>
@@ -77,8 +77,8 @@ function afficher($dossiers) {
                     <div><span style=' width: 50%; font-weight: bold '>Montant (en DH)  </span><span style=' width: 50%; float: right; '>{$dossiers->getMontant()}</span></div>
                     <div><span style=' width: 50%; font-weight: bold '>Type d'activité   </span><span style=' width: 50%; float: right; '>{$dossiers->getTypeActivite()}</span></div>
                     <div><span style=' width: 50%; font-weight: bold '>Situation actuelle   </span><span style=' width: 50%; float: right; '>{$dossiers->getSituationActuelle()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '>Decision de direction   </span><span style=' width: 50%; float: right; '>{$dossiers->getDecisionDeDirection()}</span></div>
-                    <div><span style=' width: 50%; font-weight: bold '>Archivé   </span><span style=' width: 50%; float: right; '>{$dossiers->getArchive()}</span></div>
+                    <div><span style=' width: 50%; font-weight: bold '>Decision  </span><span style=' width: 50%; float: right; '>{$dossiers->getDecisionDeDirection()}</span></div>
+                   
                </div>
             </div>
             ";
@@ -146,13 +146,15 @@ function afficher($dossiers) {
                 //echo gettype($dossier);
                 afficher($dossier); ?>
             <div>
->                <button><a href=<?php echo "?did={$dossier->getNumero()}&action=modifier" ?>>Modifier</a></button>
+>               <button><a href=<?php echo "?did={$dossier->getNumero()}&action=modifier" ?>>Modifier</a></button>
                 <button><a href=<?php echo "paiement.php?did={$dossier->getNumero()}" ?>>Historique de paiements</a></button>
+                <button><a href=<?php echo "formulaire_paiement.php?did={$dossier->getNumero()}&action=payer"?>>Payer</a></button>
+
                 <?php
-                var_dump($dossierDoa->est_Paye($dossier));
+                /*var_dump($dossierDoa->est_Paye($dossier));
                 if (!$dossierDoa->est_Paye($dossier)) {
                     echo "<button><a href='paiement.php?did={$dossier->getNumero()}&action=payer'>Payer</a></button>";
-                }
+                }*/
                 ?>
 
 
