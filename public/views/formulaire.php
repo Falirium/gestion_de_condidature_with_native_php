@@ -2,6 +2,7 @@
 <form action = "../controllers/ajouterDossier.php" method = "POST" enctype="multipart/form-data">
     <table class = "tab_form">
 
+        <!--
         <tr>
             <td>
                 <label for="num">:رقم</label>
@@ -10,6 +11,7 @@
                 <input type="text" name="num" class = "form_input"  required>
             </td>
         </tr>
+        -->
         <tr>
             <td>
                 <label for="prenom">:المستغل</label>

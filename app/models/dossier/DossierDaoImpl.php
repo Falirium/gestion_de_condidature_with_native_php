@@ -34,7 +34,7 @@
                     ':ta' => $dossier->getTypeActivite(),
                     ':sa' => $dossier->getSituationActuelle(),
                     ':ddd' => $dossier->getDecisionDeDirection(),
-                   ':archive' => 0
+                   ':archive' => 1
                ]);
               var_dump($result);
                if ($result)
@@ -45,7 +45,7 @@
 
           public function modifierDossier($dossier) {
               $query = "UPDATE `dossier` 
-                        SET `utilisateur` = :util, `sujetAutorisation` = :sa, `numeroDecision` = :nd, `dateDecision` = :dd, `dateDebutAutorisation` = :dda, `dateFinAutorisation` = :dfa, `surface` = :surface, `montant` = :montant, `typeActivite` = :ta, `situationActuelle` = :sa, `decisionDeDirection` = :ddd
+                        SET `utilisateur` = :util, `sujetAutorisation` = :sa, `numeroDecision` = :nd, `dateDecision` = :dd, `dateDebutAutorisation` = :dda, `dateFinAutorisation` = ':dfa', `surface` = :surface, `montant` = :montant, `typeActivite` = :ta, `situationActuelle` = :sa, `decisionDeDirection` = :ddd
                         WHERE numero = :id";
 
              $stmt = $this->connect->prepare($query);
@@ -107,7 +107,6 @@
              $result = $stmt->execute([
                  ':b' => $isArchive
              ]);
-
 
 
 
