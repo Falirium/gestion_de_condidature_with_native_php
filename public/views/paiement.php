@@ -65,7 +65,7 @@ function afficher($paiements) {
 
                 ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?pid={$paiement->getId()}'>Consulter</a></button></td>
 
-                 .<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='modifier-paiement.php?did={$dossier->getNumero()}&action=modifier'>Modifier</a></button>
+                 .<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='modifier-paiement.php?pid={$paiement->getId()}&action=modifier'>Modifier</a></button>
 </tr>";
 
             echo $row;

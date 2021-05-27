@@ -17,7 +17,7 @@ $archive = 1;
 if (isset($_POST['archive'])) {
     $archive = $_POST['archive'];
 } else {
-    $archive = 0;
+    $archive = 1;
 }
 
 //Function to display an array of Dossier | or single object Dossier
@@ -165,6 +165,7 @@ function afficher($dossiers) {
                 }
             } else {
                 $dossiers = $dossierDoa->afficherTousDossier($archive);
+                var_dump($archive, $dossiers);
 
                 afficher($dossiers);
 

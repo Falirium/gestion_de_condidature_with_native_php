@@ -7,7 +7,7 @@
 	define('DB_NAME',"data_dossier");
 	define('DB_USER',"root");
 	define('DB_PWD',"");
-	//define('DB_PORT', 3308);
+	define('DB_PORT', 3308);
 
 	class Connexion {
 
@@ -15,7 +15,7 @@
         public static function getConnexion()  {
             try {
                 // Define DSN Data Source Name
-                $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
+                $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';port='.DB_PORT;
                 return $connect = new \PDO($dsn,DB_USER,DB_PWD);
             } catch (\PDOException $e ) {
                 echo "Failed to connect to the database : ".$e->getMessage();
