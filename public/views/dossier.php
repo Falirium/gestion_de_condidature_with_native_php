@@ -165,7 +165,7 @@ function afficher($dossiers) {
                 }
             } else {
                 $dossiers = $dossierDoa->afficherTousDossier($archive);
-                var_dump($archive, $dossiers);
+                //var_dump($archive, $dossiers);
 
                 afficher($dossiers);
 
@@ -174,6 +174,7 @@ function afficher($dossiers) {
             ?>
 
         </div>
+
 
 
 

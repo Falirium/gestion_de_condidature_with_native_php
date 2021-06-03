@@ -10,6 +10,10 @@
           public function afficherTousDossier($archiveValue);
 
           public function est_Paye($dossier);
+          public function nombreDossiers();
+          public function nombreDossiersArchives();
+          public function nombreDossiersActives();
+          public function montantTotal();
 
      }
 

@@ -137,6 +137,45 @@
              }
          }
 
+         public function nombreDossiers() {
+              $query = "SELECT * FROM `dossier`";
+              $stmt = $this->connect->prepare($query);
+              $result = $stmt->execute();
+              if ($result) {
+                  return $stmt->rowCount();
+              }
+         }
+
+         public function nombreDossiersArchives() {
+             $query = "SELECT * FROM `dossier` WHERE archive = 1";
+             $stmt = $this->connect->prepare($query);
+             $result = $stmt->execute();
+             if ($result) {
+                 return $stmt->rowCount();
+             }
+         }
+
+         public function nombreDossiersActives() {
+             $query = "SELECT * FROM `dossier` WHERE archive = 0";
+             $stmt = $this->connect->prepare($query);
+             $result = $stmt->execute();
+             if ($result) {
+                 return $stmt->rowCount();
+             }
+         }
+
+         public function montantTotal() {
+             $query = "SELECT SUM(montant) as `sum` FROM `dossier` WHERE archive = 0";
+             $stmt = $this->connect->prepare($query);
+             $result = $stmt->execute();
+             if ($result) {
+                 return $stmt->fetch(\PDO::FETCH_ASSOC);
+             }
+         }
+
+
+
+
 
      }
 

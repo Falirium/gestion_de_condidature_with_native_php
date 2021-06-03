@@ -26,7 +26,7 @@ if (isset($_GET['did']) && isset($_GET['action'])) {
                 <label for="num">:رقم</label>
             </td>
             <td class = "form_td">
-                <input type="text" name="num" class = "form_input"  value = "<?php echo $dossier->getNumero() ?>" required >
+                <input type="text" name="num" class = "form_input"  value = "<?php echo $dossier->getNumero() ?>" required readonly>
             </td>
         </tr>
         <tr>

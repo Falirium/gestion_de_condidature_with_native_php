@@ -5,7 +5,7 @@ require __DIR__ . "/../../vendor/autoload.php";
 
 $newPaiement = new \App\models\paiement\Paiement();
 
-$newPaiement->setId($_POST['id']) ;
+$newPaiement->setId($_POST['pid']) ;
 $newPaiement->setDossierId($_POST['did']) ;
 $newPaiement->setBeneficiaire($_POST['beneficiaire']);
 $newPaiement->setRedevance($_POST['redevance']);
@@ -23,7 +23,7 @@ var_dump($newPaiement);
 
 
 //var_dump($newPaiement);
-$paiementDao = \App\models\paiement\PaiementDaoFactory::getPaiementDaoFactory("mysql");
+$paiementDao = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory("mysql");
 
 if($paiementDao->modifierPaiement($newPaiement)) {
     echo 'bssatek';

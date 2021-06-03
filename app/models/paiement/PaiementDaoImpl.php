@@ -80,7 +80,7 @@ class PaiementDaoImpl implements PaiementDao {
     }
     public function modifierPaiement($paiement) {
         $query = "UPDATE `paiement` 
-                        SET `Beneficiaire` = :beneficiaire, `Redevance` = :redevance, `Montant` = :montant, `N°BV` = :nbv, `Date_BV` = :dbv, `date_de_paiement` = :dp, `BG` = :bg, `FS` = :fs, `Date_de_OR` = :dor, `Observation` = :obs
+                        SET beneficiaire = :beneficiaire, redevance = :redevance, montant = :montant, nBV = :nbv, date_BV = :dbv, date_de_paiement = :dp, bg = :bg, fs = :fs, date_de_OR = :dor, observation = :obs
                         WHERE dossier_id = :did";
 
         $stmt = $this->connect->prepare($query);
@@ -90,11 +90,11 @@ class PaiementDaoImpl implements PaiementDao {
             ':redevance' => $paiement->getRedevance(),
             ':montant' => $paiement->getMontant(),
             ':nbv' => $paiement->getNBV(),
-            ':dbv' => $paiement->getDate_BV() ,
-            ':dp' => $paiement->getDate_de_paiement(),
+            ':dbv' => $paiement->getDateBV() ,
+            ':dp' => $paiement->getDateDePaiement(),
             ':bg' => $paiement->getBg(),
             ':fs' => $paiement->getFs(),
-            ':dor' => $paiement->getDate_de_OR(),
+            ':dor' => $paiement->getDateDeOR(),
             ':obs' => $paiement->getObservation(),
 
             ':did' =>$paiement->getDossierId()

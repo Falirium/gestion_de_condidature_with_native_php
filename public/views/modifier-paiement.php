@@ -22,10 +22,18 @@ if (isset($_GET['pid']) && isset($_GET['action'])) {
 
         <tr>
             <td>
+                <label for="num">N°de Paiement :</label>
+            </td>
+            <td class = "form_td">
+                <input type="text" name="pid" class = "form_input"   readonly="true" value="<?php echo $paiement->getId();?>" required >
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <label for="num">N°de Dossier:</label>
             </td>
             <td class = "form_td">
-                <input type="text" name="did" class = "form_input"  value="<?php echo $paiement->getDossierId();?>" required >
+                <input type="text" name="did" class = "form_input"  readonly="true" value="<?php echo $paiement->getDossierId();?>" required >
             </td>
         </tr>
         <tr>
@@ -33,7 +41,7 @@ if (isset($_GET['pid']) && isset($_GET['action'])) {
                 <label for="prenom">Nom de beneficiaire:</label>
             </td>
             <td class = "form_td">
-                <input type="text" name="beneficiaire" class = "form_input"  value="<?php echo $paiement->getBeneficiaire();?>" required>
+                <input type="text" name="beneficiaire" class = "form_input" readonly="true" value="<?php echo $paiement->getBeneficiaire();?>" required>
             </td>
         </tr>
         <tr>
@@ -50,7 +58,7 @@ if (isset($_GET['pid']) && isset($_GET['action'])) {
                 <label for="montant">Montant:</label>
             </td>
             <td class = "form_td">
-                <input type="text" name="montant" class = "form_input"  value="<?php echo $paiement->getMontant();?>" required>
+                <input type="text" name="montant" class = "form_input"  readonly="true" value="<?php echo $paiement->getMontant();?>" required>
             </td>
         </tr>
         <tr>

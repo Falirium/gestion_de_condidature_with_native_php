@@ -75,14 +75,14 @@
                 <label for="activite">: نوعية النشاط </label>
             </td>
             <td class = "form_td">
-                <select name="activite" class = "form_input" required>
-                    <option value="activite"> : نوعية النشاط </option>
-                    <option value="أنشطة سياحية">أنشطة سياحية </option>
-                    <option value="أنشطة تجارية">أنشطة تجارية</option>
-                    <option value="مصانع">مصانع</option>
-                    <option value="نقط تفريغ الأسماك ">نقط تفريغ الأسماك </option>
-                    <option value="محطة الضخ">محطة الضخ </option>
-                </select>
+                    <select name="activite" class = "form_input" required>
+                        <option value="activite"> : نوعية النشاط </option>
+                        <option value="أنشطة سياحية">أنشطة سياحية </option>
+                        <option value="أنشطة تجارية">أنشطة تجارية</option>
+                        <option value="مصانع">مصانع</option>
+                        <option value="نقط تفريغ الأسماك ">نقط تفريغ الأسماك </option>
+                        <option value="محطة الضخ">محطة الضخ </option>
+                    </select>
             </td>
         </tr>
 
