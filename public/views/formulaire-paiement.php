@@ -45,7 +45,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-6 col-form-label pr-0">Nom de beneficiaire</label>
                                                     <div class="col-6">
-                                                        <input type="text" name="prenom" class = "form-control form-control-sm" required>
+                                                        <input type="text" name="prenom" value="<?php echo $dossier->getUtilisateur(); ?>" class = "form-control form-control-sm" required readonly>
                                                         <!--<div class="invalid-feedback">Please choose a username</div> -->
                                                     </div>
                                                 </div>
@@ -149,7 +149,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="numero" class="col-5 col-form-label pr-3">Montant</label>
                                                     <div class="col-7 ">
-                                                        <input type="text" name="surface" class = "form-control form-control-sm" required>
+                                                        <input type="text" name="surface" value="<?php echo $dossier->getMontant(); ?>" class = "form-control form-control-sm" required readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,7 +158,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-4 col-form-label pr-0">Observation</label>
                                                     <div class="col-8">
-                                                        <textarea name="situation" class = "form-control form-control-sm" rows="2" required></textarea>
+                                                        <textarea name="situation" class = "form-control form-control-sm" rows="3" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>

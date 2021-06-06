@@ -8,7 +8,7 @@ if (isset($_GET['did'])) {
     //redirect to la liste des dossiers
 }
 
-$dossier = $dossierDoa->selectionnerDossier();
+$dossier = $dossierDoa->selectionnerDossier($did);
 
 ?>
 
@@ -34,7 +34,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="" class="col-2 col-form-label">رقم</label>
                                 <div class="col-10">
-                                    <input type="text" name="numero" class = "form-control form-control-sm" value="<?php echo $dossier->getNumero() ?>" required>>
+                                    <input type="text" name="numero" class = "form-control form-control-sm" value="<?php echo $dossier->getNumero() ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl row">
                                 <label for="" class="col-3 col-form-label">المستغل</label>
                                 <div class="col-9">
-                                    <input type="text" name="prenom" class = "form-control form-control-sm" value="<?php echo $dossier->getUtilisateur() ?>" required>>
+                                    <input type="text" name="prenom" class = "form-control form-control-sm" value="<?php echo $dossier->getUtilisateur() ?>" required>
                                     <!--<div class="invalid-feedback">Please choose a username</div> -->
                                 </div>
                             </div>
@@ -53,7 +53,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="numero" class="col-4 col-form-label pl-0">موضوع الرخصة</label>
                                 <div class="col-8 pr-0">
-                                    <input type="text" name="sujet" class = "form-control form-control-sm" value="<?php echo $dossier->getSujetAutorisation() ?>" required>>
+                                    <input type="text" name="sujet" class = "form-control form-control-sm" value="<?php echo $dossier->getSujetAutorisation() ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="" class="col-5 col-form-label pl-0">رقم القرار</label>
                                 <div class="col-7 pr-0">
-                                    <input type="text" name="numero" class = "form-control form-control-sm" value="<?php echo $dossier->getNumeroDecision() ?>" required>>
+                                    <input type="text" name="numero" class = "form-control form-control-sm" value="<?php echo $dossier->getNumeroDecision() ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="numero" class="col-3 col-form-label pl-0">المساحة</label>
                                 <div class="col-9 ">
-                                    <input type="text" name="surface" class = "form-control form-control-sm" value="<?php echo $dossier->getSurface() ?>" required>>
+                                    <input type="text" name="surface" class = "form-control form-control-sm" value="<?php echo $dossier->getSurface() ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="" class="col-5 col-form-label pl-0">مبلغ الإتاوة السنوية</label>
                                 <div class="col-7 pr-0">
-                                    <input type="text" name="montant" class = "form-control form-control-sm" value="<?php echo $dossier->getMontant() ?>" required>>
+                                    <input type="text" name="montant" class = "form-control form-control-sm" value="<?php echo $dossier->getMontant() ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="" class="col-4 col-form-label">تاريخ القرار</label>
                                 <div class="col-8">
-                                    <input type="date" name="dd" class = "form-control form-control-sm" value="<?php echo $dossier->getDateDecision() ?>" required>>
+                                    <input type="date" name="dd" class = "form-control form-control-sm" value="<?php echo $dossier->getDateDecision() ?>" required>
                                 </div>
 
                             </div>
@@ -136,7 +136,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="numero" class="col-4 col-form-label">تاريخ بداية الرخصة</label>
                                 <div class="col-8 pr-0">
-                                    <input type="date" name="dda" class = "form-control form-control-sm" value="<?php echo $dossier->getDateDebutAutorisation() ?>" required>>
+                                    <input type="date" name="dda" class = "form-control form-control-sm" value="<?php echo $dossier->getDateDebutAutorisation() ?>" required>
                                 </div>
 
                             </div>
@@ -146,7 +146,7 @@ $dossier = $dossierDoa->selectionnerDossier();
                             <div class="form-group row form-rtl">
                                 <label for="" class="col-4 col-form-label pl-0">تاريخ إنتهاء الرخصة</label>
                                 <div class="col-8 pr-0">
-                                    <input type="date" name="dfa" class = "form-control form-control-sm" value="<?php echo $dossier->getDateFinAutorisation() ?>" required>>
+                                    <input type="date" name="dfa" class = "form-control form-control-sm" value="<?php echo $dossier->getDateFinAutorisation() ?>" required>
                                 </div>
 
                             </div>

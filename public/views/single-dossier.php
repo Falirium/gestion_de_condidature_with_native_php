@@ -167,9 +167,9 @@ $dossier = $dossierDoa->selectionnerDossier($did);
                             </div>
                         </div>
                         <div class="col-8 mt-3 mx-auto btn-position">
-                            <a href="#" class="btn btn-danger btn-sm float-left mx-2 text-white" role="button" > Archiver </a>
-                            <a href="#" class="btn btn-secondary btn-sm float-left mx-2 text-white" role="button">Modifier</a>
-                            <a href="#" class="btn btn-primary btn-sm float-center mx-2 text-white" role="button">Historique de paiements</a>
+                            <a href="../controllers/archiverDossier.php?did=<?php echo $dossier->getNumero() ?>" class="btn btn-danger btn-sm float-left mx-2 text-white" role="button" > Archiver </a>
+                            <a href="dossier.php?action=modifier&did=<?php echo $dossier->getNumero() ?>" class="btn btn-secondary btn-sm float-left mx-2 text-white" role="button">Modifier</a>
+                            <a href="paiement.php?action=consulter&did=<?php echo $dossier->getNumero() ?>" class="btn btn-primary btn-sm float-center mx-2 text-white" role="button">Historique de paiements</a>
                             <a href="paiement.php?action=payer&did=<?php echo $dossier->getNumero() ?>" class="btn btn-warning btn-sm float-right mx-2 text-white" role="button">Payer</a>
                         </div>
                     </div>
