@@ -34,7 +34,7 @@
                     ':ta' => $dossier->getTypeActivite(),
                     ':sa' => $dossier->getSituationActuelle(),
                     ':ddd' => $dossier->getDecisionDeDirection(),
-                   ':archive' => 1
+                   ':archive' => 2
                ]);
               var_dump($result);
                if ($result)
@@ -99,13 +99,13 @@
                   return false;
               }
           }
-         public function afficherTousDossier($archiveValue)
+         public function afficherTousDossier()
          {
-             $isArchive = $archiveValue;
-             $query = "SELECT * FROM  `dossier` WHERE archive = :b";
+
+             $query = "SELECT * FROM  `dossier`";
              $stmt = $this->connect->prepare($query);
              $result = $stmt->execute([
-                 ':b' => $isArchive
+
              ]);
 
 

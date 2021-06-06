@@ -29,15 +29,15 @@ function afficher($dossiers) {
         echo '<table style="border: 1px solid black; border-collapse: collapse; width: 100%">';
         foreach ($dossiers as $dossier) {
 
-            $row = "<tr><td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getNumero()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getUtilisateur()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getSujetAutorisation()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getDateFinAutorisation()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getMontant()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\">".$dossier->getTypeActivite()."</td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='../controllers/archiverDossier.php?did={$dossier->getNumero()}'>Archiver</a></button></td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?did={$dossier->getNumero()}&action=modifier'>Modifier</a></button></td>"
-                ."<td style=\"border: 1px solid black; border-collapse: collapse;\"> <button><a href='?did={$dossier->getNumero()}'>Consulter</a></button></td></tr>";
+            $row = "<tr><td>".$dossier->getNumero()."</td>"
+                ."<td>".$dossier->getUtilisateur()."</td>"
+                ."<td>".$dossier->getSujetAutorisation()."</td>"
+                ."<td>".$dossier->getDateFinAutorisation()."</td>"
+                ."<td>".$dossier->getMontant()."</td>"
+                ."<td>".$dossier->getTypeActivite()."</td>"
+                ."<td> <button><a href='../controllers/archiverDossier.php?did={$dossier->getNumero()}'>Archiver</a></button></td>"
+                ."<td> <button><a href='?did={$dossier->getNumero()}&action=modifier'>Modifier</a></button></td>"
+                ."<td> <button><a href='?did={$dossier->getNumero()}'>Consulter</a></button></td></tr>";
 
             echo $row;
         }
@@ -101,96 +101,81 @@ function afficher($dossiers) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Nouveau dossier </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="icon" type="image/ico" href="../css/img/logo.ico"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP MVC Frameworks - Search Engine</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <script type="text/javascript" src="auto_complete.js"></script>
+    <link href="../css/main.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<?php require_once "../header.php"?>
-<section>
-    <nav>
-        <!--Empty-->
-    </nav>
 
-    <article>
-        <h1 align = "center">Dossiers!</h1>
-        <div class = "cand_info" align = "center">Merci de founir des informations exactes, dans le cas ou vous remarquez un problème prière de contacter l'administrateur <a href = "mailto: admin@webmaster.com" >admin@webmaster.com</a></div>
-        <div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="sidebar px-4">
 
-        </div>
-        <!--
-        <div>
-
-            <form action="" method="post">
-                <input type="checkbox" id="archive" name="archive" value="1" >
-                <label for="archive">Afficher les dossiers archivés</label>
-                <input type="submit" value="Actualiser">
-            </form>
-        </div>
-        -->
-        <div id = "select_form">
-            <?php
-            if (isset($_GET['did'])) {
-                if (isset($_GET['action'])) {
-                    if ($_GET['action'] === "modifier") {
-                        require_once "modifier_formulaire.php";
-                    } else {
-                        //Renvoie vers la liste des dossiers
-                    }
-                } else {
-
-
-                $dossier = $dossierDoa->selectionnerDossier($_GET['did']);
-                //echo gettype($dossier);
-                afficher($dossier); ?>
-            <div>
->               <button><a href=<?php echo "?did={$dossier->getNumero()}&action=modifier" ?>>Modifier</a></button>
-                <button><a href=<?php echo "paiement.php?did={$dossier->getNumero()}" ?>>Historique de paiements</a></button>
-                <button><a href=<?php echo "formulaire_paiement.php?did={$dossier->getNumero()}&action=payer"?>>Payer</a></button>
-
-                <?php
-                /*var_dump($dossierDoa->est_Paye($dossier));
-                if (!$dossierDoa->est_Paye($dossier)) {
-                    echo "<button><a href='paiement.php?did={$dossier->getNumero()}&action=payer'>Payer</a></button>";
-                }*/
-                ?>
-
-
+                <?php require_once 'sidemenu.php' ?>
 
             </div>
 
-            <?php
-                }
-            } else {
-                $dossiers = $dossierDoa->afficherTousDossier($archive);
-                //var_dump($archive, $dossiers);
+            <div class="col-9 ml-5">
 
-                afficher($dossiers);
+                <div class="row">
+                    <div class="col mt-4 mb-2 p-3 statistics">
 
-            }
+                        <?php require_once 'statistics.php';?>
 
-            ?>
+                    </div>
 
+                </div>
+
+                <div class="row">
+
+                    <div class="col mt-3 py-3 content">
+
+                        <?php
+                            if (isset($_GET['action'])) {
+                                $action = $_GET['action'];
+
+                                if ($action === "ajouter") {
+
+                                    require_once 'formulaire-dossier.php';
+
+                                } else if ($action === "consulter") {
+                                    // Cas : tous les dossiers
+                                    if (!isset($_GET['did'])) {
+                                        require_once 'table-dossiers.php';
+                                    } else { // dossier avec did
+                                        require_once 'single-dossier.php';
+                                    }
+
+
+                                } else if ($action === "modifier") {
+                                    require_once 'modifier-dossier.php';
+                                }
+
+                            } else {
+                                // redirect to the profil page
+                            }
+
+                        ?>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-
-        <p>Retour vers la page precedente : <a href = "dossier.php"> ici </a></p>
-    </article>
-    <aside>
-        <!--Empty-->
-    </aside>
-</section>
-<footer>
-    <p>Direction-plateforme Version 1.1 © <br />2021</p>
-</footer>
 </body>
 </html>

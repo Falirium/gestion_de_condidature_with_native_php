@@ -17,13 +17,13 @@
             header("Location: ../views/dossier.php");
 
         } else {
-            // Renvoie un erreur
+            // redirect to single dossier page
             echo "Failed";
         }
 
 
     } else {
-        // Renvoie un error
+        // redirect to table-dossiers.php
     }
 
 ?>

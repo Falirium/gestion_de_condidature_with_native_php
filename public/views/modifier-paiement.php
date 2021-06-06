@@ -17,110 +17,166 @@ if (isset($_GET['pid']) && isset($_GET['action'])) {
 
 
 ?>
-<form action = "../controllers/modifierPaiement.php" method = "POST" enctype="multipart/form-data">
-    <table class = "tab_form">
+<div class="row">
 
-        <tr>
-            <td>
-                <label for="num">N°de Paiement :</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="pid" class = "form_input"   readonly="true" value="<?php echo $paiement->getId();?>" required >
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="num">N°de Dossier:</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="did" class = "form_input"  readonly="true" value="<?php echo $paiement->getDossierId();?>" required >
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="prenom">Nom de beneficiaire:</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="beneficiaire" class = "form_input" readonly="true" value="<?php echo $paiement->getBeneficiaire();?>" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="sujet">Redevance:</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="redevance" class = "form_input"  value="<?php echo $paiement->getRedevance();?>"required>
-            </td>
-        </tr>
 
-        <tr>
-            <td>
-                <label for="montant">Montant:</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="montant" class = "form_input"  readonly="true" value="<?php echo $paiement->getMontant();?>" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="N°BV">N° BV</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="nbv" class = "form_input"   value="<?php echo $paiement->getNBV();?>"required>
-            </td>
-        </tr>
-        <tr>
-            <td>Date BV</td>
-            <td>
-                <input type="date" name="dbv" class = "form_input" value="<?php echo $paiement->getDateBV();?>"required>
-            </td>
-        </tr>
-        <tr>
-            <td> Date de paiement </td>
-            <td>
-                <input type="date" name="dp" class = "form_input" value="<?php echo $paiement->getDateDePaiement();?>" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="N° de OR : BG">N° de OR : BG</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="bg" class = "form_input"  value="<?php echo $paiement->getBg();?>" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="N° de OR : FS">N° de OR : FS</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="fs" class = "form_input"  value="<?php echo $paiement->getFs();?>" required>
-            </td>
-        </tr>
-        <tr>
-            <td> Date de OR </td>
-            <td>
-                <input type="date" name="dor" class = "form_input" value="<?php echo $paiement->getDateDeOR();?>" required>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="observation">Observation</label>
-            </td>
-            <td class = "form_td">
-                <input type="text" name="obs" class = "form_input" value="<?php echo $paiement->getObservation();?>"  required>
-            </td>
-        </tr>
+    <div class="col-12 text-center">
+        <h2 class="my-2">Paiement</h2>
+        <p class="mb-4">Choisir un service que vous voulez accomplir en cliquant</p>
+    </div>
+
+    <div class="col-12">
+
+        <form action="../controllers/modifierPaiement.php" class=" text-right" method="post">
+
+            <div class="row">
+                <div class="col-11 mt-3 mx-auto">
+
+                    <!--Row 1-->
+                    <div class="row text-center">
+
+                        <div class="col-4">
+                            <div class="form-group row ">
+                                <label for="" class="col-5 col-form-label pr-0">N° de paiement</label>
+                                <div class="col-5">
+                                    <input type="text" name="pid" value="<?php echo $paiement->getId(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group row ">
+                                <label for="" class="col-6 col-form-label pr-0">Nom de beneficiaire</label>
+                                <div class="col-6">
+                                    <input type="text" name="beneficiaire" value="<?php echo $paiement->getBeneficiaire(); ?>" class = "form-control form-control-sm" required>
+                                    <!--<div class="invalid-feedback">Please choose a username</div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="form-group row ">
+                                <label for="numero" class="col-6 col-form-label pr-0">N° de dossier</label>
+                                <div class="col-6 ">
+                                    <input type="text" name="did" value="<?php echo $paiement->getDossierId(); ?>"  class = "form-control form-control-sm" required readonly>
+                                </div>
+                            </div>
+                        </div>
 
 
 
+                    </div>
 
-    </table>
-    <table class = "tab_form">
-        <tr>
-            <td class = "form_td">
-                <center><input type = "submit" name = "GO" value = "Modifier" class = "form_input_2"></center>
-            </td>
-        </tr>
-    </table>
-</form>
+                    <!--Row 2 -->
+                    <div class="row text-center">
+
+                        <div class="col-4">
+                            <div class="form-group row ">
+                                <label for="" class="col-5 col-form-label pr-0">N° de OR [BG]</label>
+                                <div class="col-6">
+                                    <input type="text" name="bg" value="<?php echo $paiement->getBg(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group row ">
+                                <label for="numero" class="col-5 col-form-label pr-0">N° de OR [FS]</label>
+                                <div class="col-6 ">
+                                    <input type="text" name="fs" value="<?php echo $paiement->getFs(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group row ">
+                                <label for="" class="col-4 col-form-label pr-0">Date de OR</label>
+                                <div class="col-8">
+                                    <input type="date" name="dor" value="<?php echo $paiement->getDateDeOR(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <!--Row 3 -->
+                    <div class="row text-center">
+
+                        <div class="col-3">
+                            <div class="form-group row ">
+                                <label for="" class="col-3 col-form-label pr-0">N° BV</label>
+                                <div class="col-8">
+                                    <input type="text" name="nbv" value="<?php echo $paiement->getNBV(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group row ">
+                                <label for="numero" class="col-4 col-form-label pr-0">Date BV</label>
+                                <div class="col-7 ">
+                                    <input type="date" name="dbv" value="<?php echo $paiement->getDateBV(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-5">
+                            <div class="form-group row ">
+                                <label for="" class="col-5 col-form-label pr-0">Date de paiement</label>
+                                <div class="col-7">
+                                    <input type="date" name="dp" value="<?php echo $paiement->getDateDePaiement(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!--Row 4 -->
+                    <div class="row text-center">
+
+                        <div class="col-3">
+                            <div class="form-group row ">
+                                <label for="numero" class="col-5 col-form-label pr-0">Redevance</label>
+                                <div class="col-7 ">
+                                    <input type="text" name="redevance" value="<?php echo $paiement->getRedevance(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3 ">
+                            <div class="form-group row ">
+                                <label for="numero" class="col-5 col-form-label pr-3">Montant</label>
+                                <div class="col-7 ">
+                                    <input type="text" name="montant" value="<?php echo $paiement->getMontant(); ?>" class = "form-control form-control-sm" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 ">
+                            <div class="form-group row ">
+                                <label for="" class="col-4 col-form-label pr-0">Observation</label>
+                                <div class="col-8">
+                                    <textarea name="obs"  class = "form-control form-control-sm" rows="3" required><?php echo $paiement->getObservation(); ?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 mt-3 mx-auto">
+                            <button class="btn btn-success btn-sm mx-auto" type="submit">Modifier paiement</button>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

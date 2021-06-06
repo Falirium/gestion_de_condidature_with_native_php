@@ -16,7 +16,7 @@
               $this->connect->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
 
               $query = "SELECT * FROM `admin_contact` WHERE `e_cin` = :cin";
-              var_dump($this->connect);
+              //var_dump($this->connect);
               try {
                   $stmt = $this->connect->prepare($query);
               } catch (\PDOException $e) {

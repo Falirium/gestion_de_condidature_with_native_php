@@ -19,7 +19,6 @@
     $newDossier->setSituationActuelle($_POST['situation']);
     $newDossier->setDecisionDeDirection($_POST['decision']);
 
-    var_dump($newDossier);
 
 
 
@@ -28,8 +27,9 @@
 
     if($dossierDao->modifierDossier($newDossier)) {
         echo 'bssatek';
-        header("Refresh:1; url=../views/dossier.php");
+        header("Refresh:1; url=../views/dossier.php?action=consulter&did={$newDossier->getNumero()}");
     } else {
         echo '3awd';
+        // redirect to modifier-dossier formulaire
     }
 ?>

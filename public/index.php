@@ -30,64 +30,93 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Page principale</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP MVC Frameworks - Search Engine</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <script type="text/javascript" src="auto_complete.js"></script>
+    <link href="css/main.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
     <link rel="icon" type="image/ico" href="css/img/logo.ico"/>
 </head>
-<h2>Direction-Plateforme</h2>
-<header>
-    <h2>Direction-Plateforme</h2>
-    <div class = "header_right">
-        <a href = '#' class = 'a_button'>Connexion</a>
+
+    <div class="container-fluid index-container">
+
+
+        <div class="row h-100 ">
+            <div class="col-12 px-5 pb-0 align-self-start">
+                <img src="img/slogan.svg" alt="" class="index-logo">
+                <p class="text-center mx-auto w-75 index-text">KAFA est une plateforme digitale concue pour gérer complétement les dossiers au sein de la Direction de la ministre de logistique et de transport à Kenitra </p>
+
+            </div>
+            <div class="col-4 mx-auto p-4 login align-self-center">
+                <div class="row">
+                    <div class="col-12 d-flex mb-3">
+
+                        <div class="login-text py-3 px-2 mx-3">
+                            <span>Login</span>
+                        </div>
+                        <div class="login-text py-3 px-2 mx-3">
+                            <span>SignUp</span>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12">
+                        <form action="controllers/connexion.php" class="col-10 mx-auto mt-3" method="post">
+                            <div class="input-group form-group login-input ">
+                                <div class="input-group-prepend  input-group-sm">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">username</span>
+                                </div>
+                                <input name="cin_c" type="text" class="form-control" required>
+                            </div>
+                            <div class="input-group form-group login-input mb-5">
+                                <div class="input-group-prepend  input-group-sm">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">password</span>
+                                </div>
+                                <input name="key_c" type="password" class="form-control" required>
+                            </div>
+
+
+
+                            <div class="col text-center align-self-end">
+                                <input type="submit" value="Connecter" class="btn btn-login">
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-12 footer-height align-self-end">
+                <footer class="h-100">
+                    <div class="row h-50 d-flex justify-content-center">
+                        <a href="#" class="col-auto mx-3  align-self-center">Contributors</a>
+                        <img src="img/slogan.svg" alt="" class="col-auto footer-logo mx-3">
+                        <a href="#" class="col-auto mx-3 align-self-center">About Us</a>
+                    </div>
+
+                    <div class="row h-50 d-flex justify-content-center align-items-center">
+                        <div class="col-8 text-center">
+                            <span>Made with <i class="fa fa-heart pulse"></i></span>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
     </div>
-</header>
-    <section>
-        
-        
-        <nav>
-            <!--Empty-->
-        </nav>
-  
-        
-        <article>
-            <h1 align = "center">Page principale</h1>
-            <p class = "con_instructions">Bienvenue sur la page principale de la plateforme, cette plateforme vous permet d'ajouter des dossiers à la base de donnée de la Direction. Vous pouvez founir toutes les informations  (nom de beneficiaire, montant, paiement ...) ces informations sont confidentielles aucune personne n'a le droit de changer ou de voir ces informations sauf l'admin!  </p>
-            <p class = "con_instructions">Merci de founir des informations exactes, dans le cas ou vous remarquez un problème prière de contacter l'administrateur <a href = "mailto: admin@webmaster.com" >admin@webmaster.com</a></p>
-            <p align = "center">
-                <form action = "controllers/connexion.php" method = "POST">
-                    <table class = "tab_form">
-                        <tr>
-                            <td><label for="nom">Votre CIN:</label></td>
-                            <td class = "form_td"><input type="text" name="cin_c" class = "form_input" placeholder = "CIN ex : K101210" required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="prenom">Votre SecureKey:</label></td>
-                            <td class = "form_td"><input type="password" name="key_c" class = "form_input" required></td>
-                        </tr>
-                    </table>
-                    <table class = "tab_form">
-                        <tr>
-                            <td class = "form_td">
-                                <center><input type = "submit" name = "GO" value = "Consulter" class = "form_input_conv"></center>
 
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </p>
-        </article>
-
-        
-        <aside>
-            <!--Empty-->
-        </aside>
-        
-        
-    </section>
-    <footer>
-      <p>Etudiants-plateforme Version 1.1 © <br />2021</p>
-    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

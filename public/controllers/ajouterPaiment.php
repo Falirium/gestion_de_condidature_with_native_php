@@ -8,7 +8,7 @@ $newPaiement = new \App\models\paiement\Paiement();
 
 //$faker = \Faker\Factory::create();
 
-//$newPaiement->setId($_POST['id']);
+$newPaiement->getId($_POST['id']);
 $newPaiement->setDossierId($_POST['num']) ;
 $newPaiement->setBeneficiaire($_POST['beneficiaire']);
 $newPaiement->setRedevance($_POST['redevance']);
@@ -29,7 +29,9 @@ $paiementDao = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory("my
 
 if($paiementDao->ajouterPaiement($newPaiement)) {
     echo 'bssatek';
+    header("Refresh:1; url=../views/dossier.php?action=consulter");
 } else {
     echo '3awd';
+    // redirect to single dossier page
 }
 ?>
