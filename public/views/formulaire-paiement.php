@@ -24,7 +24,7 @@ if (isset($_GET['did'])) {
 
                         <div class="col-12">
 
-                            <form action="../controllers/ajouterPaiment.php" class=" text-right" method="post">
+                            <form action="../controllers/ajouterPaiement.php" class=" text-right" method="post">
 
                                 <div class="row">
                                     <div class="col-11 mt-3 mx-auto">
@@ -36,7 +36,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-5 col-form-label pr-0">N° de paiement</label>
                                                     <div class="col-5">
-                                                        <input type="text" name="numero" class = "form-control form-control-sm" required>
+                                                        <input type="text" name="id" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,7 +45,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-6 col-form-label pr-0">Nom de beneficiaire</label>
                                                     <div class="col-6">
-                                                        <input type="text" name="prenom" value="<?php echo $dossier->getUtilisateur(); ?>" class = "form-control form-control-sm" required readonly>
+                                                        <input type="text" name="beneficiaire" value="<?php echo $dossier->getUtilisateur(); ?>" class = "form-control form-control-sm" required readonly>
                                                         <!--<div class="invalid-feedback">Please choose a username</div> -->
                                                     </div>
                                                 </div>
@@ -55,7 +55,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="numero" class="col-6 col-form-label pr-0">N° de dossier</label>
                                                     <div class="col-6 ">
-                                                        <input type="text" name="sujet" value="<?php echo $dossier->getNumero(); ?>" class = "form-control form-control-sm" required readonly>
+                                                        <input type="text" name="num" value="<?php echo $dossier->getNumero(); ?>" class = "form-control form-control-sm" required readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -71,7 +71,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-5 col-form-label pr-0">N° de OR [BG]</label>
                                                     <div class="col-6">
-                                                        <input type="text" name="numero" class = "form-control form-control-sm" required>
+                                                        <input type="text" name="bg" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="numero" class="col-5 col-form-label pr-0">N° de OR [FS]</label>
                                                     <div class="col-6 ">
-                                                        <input type="text" name="surface" class = "form-control form-control-sm" required>
+                                                        <input type="text" name="fs" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-4 col-form-label pr-0">Date de OR</label>
                                                     <div class="col-8">
-                                                        <input type="date" name="montant" class = "form-control form-control-sm" required>
+                                                        <input type="date" name="dor" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,7 +106,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-3 col-form-label pr-0">N° BV</label>
                                                     <div class="col-8">
-                                                        <input type="text" name="numero" class = "form-control form-control-sm" required>
+                                                        <input type="text" name="nbv" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="numero" class="col-4 col-form-label pr-0">Date BV</label>
                                                     <div class="col-7 ">
-                                                        <input type="date" name="surface" class = "form-control form-control-sm" required>
+                                                        <input type="date" name="dbv" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,7 +124,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-5 col-form-label pr-0">Date de paiement</label>
                                                     <div class="col-7">
-                                                        <input type="date" name="montant" class = "form-control form-control-sm" required>
+                                                        <input type="date" name="dp" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,7 +140,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="numero" class="col-5 col-form-label pr-0">Redevance</label>
                                                     <div class="col-7 ">
-                                                        <input type="text" name="sujet" class = "form-control form-control-sm" required>
+                                                        <input type="text" name="redevance" class = "form-control form-control-sm" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,7 +149,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="numero" class="col-5 col-form-label pr-3">Montant</label>
                                                     <div class="col-7 ">
-                                                        <input type="text" name="surface" value="<?php echo $dossier->getMontant(); ?>" class = "form-control form-control-sm" required readonly>
+                                                        <input type="text" name="montant" value="<?php echo $dossier->getMontant(); ?>" class = "form-control form-control-sm" required readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,7 +158,7 @@ if (isset($_GET['did'])) {
                                                 <div class="form-group row ">
                                                     <label for="" class="col-4 col-form-label pr-0">Observation</label>
                                                     <div class="col-8">
-                                                        <textarea name="situation" class = "form-control form-control-sm" rows="3" required></textarea>
+                                                        <textarea name="obs" class = "form-control form-control-sm" rows="3" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
