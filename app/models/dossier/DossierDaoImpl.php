@@ -99,7 +99,7 @@
                   return false;
               }
           }
-         public function afficherTousDossier()
+         public function afficherTousDossiers()
          {
 
              $query = "SELECT * FROM  `dossier`";
@@ -114,6 +114,27 @@
 
                   return $dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier");
                   //var_dump($dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier"));
+
+             } else {
+                 // Show database errors
+                 return null;
+             }
+         }
+
+         public function afficherDossiers($de, $qe)
+         {
+             $dossierExp = $de;
+             $queryExp = $qe;
+
+             $query = "SELECT * FROM  `dossier` WHERE ".$dossierExp." AND ".$queryExp;
+             $stmt = $this->connect->prepare($query);
+             $result = $stmt->execute();
+                //var_dump($query,$result);
+
+             if ($result) {
+
+                 return $dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier");
+                 //var_dump($dossiers = $stmt->fetchAll(\PDO::FETCH_CLASS, "App\models\dossier\Dossier"));
 
              } else {
                  // Show database errors

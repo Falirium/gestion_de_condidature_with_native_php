@@ -2,7 +2,21 @@
 require __DIR__ . "/../../vendor/autoload.php";
 $dossierDoa = \App\models\dossier\DossierDaoFactory::getDossierDaoFactory("mysql");
 
-$dossiers = $dossierDoa->afficherTousDossier();
+// for type of dossiers
+if (isset($_GET['dossierType'])) {
+    $dossierType = $_GET['dossierType'];
+
+
+
+} else if (isset($_GET['query'])) {
+    $query = $_GET['query'];
+    
+
+} else {
+    $dossiers = $dossierDoa->afficherTousDossiers();
+}
+
+
 
 ?>
 
@@ -15,21 +29,22 @@ $dossiers = $dossierDoa->afficherTousDossier();
             <form action="" class="form-inline">
                 <div class="col-6 form-group">
                     <label for="typeDossier" class="col-form-label mx-4 ml-5">Selectionner :</label>
-                    <select name="" id="typeDossier" class="form-control form-control-sm custom-select" onchange="">
+                    <select name="" id="dossierType" class="form-control form-control-sm custom-select" >
+                        <option value="">Tous</option>
                         <option value="1">Archivé</option>
                         <option value="0">Activé</option>
                         <option value="2">En cours de traitement</option>
                     </select>
                 </div>
                 <div class="col-6 ">
-                    <input type="text" class="w-50 form-control form-control-sm float-right mr-4" placeholder="search...">
+                    <input id="query"  type="text" class="w-50 form-control form-control-sm float-right mr-4" placeholder="search...">
                 </div>
             </form>
 
         </div>
     </div>
 
-    <div class="col-11 mx-auto align-self-start h-75 my-custom-scrollbar">
+    <div id="table-container" class="col-11 mx-auto align-self-start h-75 my-custom-scrollbar">
         <table class="table table-striped ">
             <thead>
                 <tr>

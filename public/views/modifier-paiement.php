@@ -152,7 +152,7 @@ if (isset($_GET['pid']) && isset($_GET['action'])) {
                             <div class="form-group row ">
                                 <label for="numero" class="col-5 col-form-label pr-3">Montant</label>
                                 <div class="col-7 ">
-                                    <input type="text" name="montant" value="<?php echo $paiement->getMontant(); ?>" class = "form-control form-control-sm" required>
+                                    <input type="text" name="montant" value="<?php echo $paiement->getMontant(); ?>" class = "form-control form-control-sm" required readonly>
                                 </div>
                             </div>
                         </div>

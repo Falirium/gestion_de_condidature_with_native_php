@@ -14,7 +14,7 @@
 
         if ($dossierdao->archiverDossier($dossier)) {
             // Archive is successful
-            header("Location: ../views/dossier.php");
+            header("Location: ../views/dossier.php?action=consulter");
 
         } else {
             // redirect to single dossier page

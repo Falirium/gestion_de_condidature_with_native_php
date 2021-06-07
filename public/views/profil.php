@@ -89,7 +89,7 @@
                                         <div class="card text-center card-all card-size">
                                             <img class="card-img-top card-img" src="../img/invoice.svg" alt="">
                                             <div class="card-body">
-                                                <a class="card-title" href="paiement.php">Consulter tous les paiements</a>
+                                                <a class="card-title" href="paiement.php?action=consulter">Consulter tous les paiements</a>
 
 
                                             </div>
