@@ -45,7 +45,7 @@
 
           public function modifierDossier($dossier) {
               $query = "UPDATE `dossier` 
-                        SET `utilisateur` = :util, `sujetAutorisation` = :sa, `numeroDecision` = :nd, `dateDecision` = :dd, `dateDebutAutorisation` = :dda, `dateFinAutorisation` = ':dfa', `surface` = :surface, `montant` = :montant, `typeActivite` = :ta, `situationActuelle` = :sa, `decisionDeDirection` = :ddd
+                        SET `utilisateur` = :util, `sujetAutorisation` = :sa, `numeroDecision` = :nd, `dateDecision` = :dd, `dateDebutAutorisation` = :dda, `dateFinAutorisation` = :dfa, `surface` = :surface, `montant` = :montant, `typeActivite` = :ta, `situationActuelle` = :sa, `decisionDeDirection` = :ddd
                         WHERE numero = :id";
 
              $stmt = $this->connect->prepare($query);
@@ -64,7 +64,7 @@
                  ':ddd' => $dossier->getDecisionDeDirection(),
                  ':id' =>$dossier->getNumero()
              ]);
-              var_dump($result);
+              //var_dump($result);
               if ($result)
                   return true;
               else return false;
@@ -102,7 +102,7 @@
          public function afficherTousDossiers()
          {
 
-             $query = "SELECT * FROM  `dossier`";
+             $query = "SELECT * FROM  `dossier` ORDER BY `dateDebutAutorisation` DESC";
              $stmt = $this->connect->prepare($query);
              $result = $stmt->execute([
 
@@ -126,7 +126,7 @@
              $dossierExp = $de;
              $queryExp = $qe;
 
-             $query = "SELECT * FROM  `dossier` WHERE ".$dossierExp." AND ".$queryExp;
+             $query = "SELECT * FROM  `dossier` WHERE ".$dossierExp." AND ".$queryExp." ORDER BY `dateDebutAutorisation` DESC";
              $stmt = $this->connect->prepare($query);
              $result = $stmt->execute();
                 //var_dump($query,$result);

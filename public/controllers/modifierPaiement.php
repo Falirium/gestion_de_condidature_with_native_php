@@ -26,7 +26,7 @@ var_dump($newPaiement);
 $paiementDao = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory("mysql");
 
 if($paiementDao->modifierPaiement($newPaiement)) {
-    echo 'bssatek';
+    //echo 'bssatek';
     header("Refresh:1; url=../views/paiement.php?action=consulter");
 } else {
     echo '3awd';

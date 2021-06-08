@@ -26,7 +26,7 @@
     $dossierDao = \App\models\dossier\DossierDaoFactory::getDossierDaoFactory("mysql");
 
     if($dossierDao->modifierDossier($newDossier)) {
-        echo 'bssatek';
+        //echo 'bssatek';
         header("Refresh:1; url=../views/dossier.php?action=consulter&did={$newDossier->getNumero()}");
     } else {
         echo '3awd';

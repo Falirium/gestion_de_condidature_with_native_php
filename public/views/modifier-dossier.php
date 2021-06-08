@@ -22,7 +22,7 @@ $dossier = $dossierDoa->selectionnerDossier($did);
 
     <div class="col-12">
 
-        <form action="" class="form-rtl arabic-label text-right">
+        <form action="../controllers/modifierDossier.php" class="form-rtl arabic-label text-right" method="post">
 
             <div class="row">
                 <div class="col-11 mt-3 mx-auto">
@@ -34,7 +34,7 @@ $dossier = $dossierDoa->selectionnerDossier($did);
                             <div class="form-group row form-rtl">
                                 <label for="" class="col-2 col-form-label">رقم</label>
                                 <div class="col-10">
-                                    <input type="text" name="numero" class = "form-control form-control-sm" value="<?php echo $dossier->getNumero() ?>" required>
+                                    <input type="text" name="num" class = "form-control form-control-sm" value="<?php echo $dossier->getNumero() ?>" required>
                                 </div>
                             </div>
                         </div>
