@@ -37,7 +37,7 @@ if (isset($_GET['dossierType'])) {
                     </select>
                 </div>
                 <div class="col-6 ">
-                    <input id="query"  type="text" class="w-50 form-control form-control-sm float-right mr-4" placeholder="search...">
+                    <input id="query"  type="text" class="w-75 form-control form-control-sm float-right mr-4" placeholder="chercher par le nom d'utilisateur...">
                 </div>
             </form>
 
