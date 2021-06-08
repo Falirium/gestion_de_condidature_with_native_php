@@ -38,7 +38,7 @@
 
             <div class="col-9 ml-5">
 
-                <div class="row green">
+                <div class="row">
                     <div class="col mt-4 mb-2 p-3 statistics">
 
                         <?php require_once 'statistics.php';?>
