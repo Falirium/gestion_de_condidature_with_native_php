@@ -9,6 +9,8 @@ interface PaiementDao {
     public function afficherTousPaiements();
     public function AfficherPaiementsParDossier($did);
     public function modifierPaiement($paiement);
+
+    public function checkPid($pid);
 }
 
 ?>

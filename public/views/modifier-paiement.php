@@ -8,6 +8,14 @@ if (isset($_GET['pid']) && isset($_GET['action'])) {
         $pid = $_GET['pid'];
 
         $paiementDao = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory("mysql");
+
+        // exception : if there is no paiement with that specific pid
+        //var_dump($paiementDao->checkPid($pid));
+        if (!$paiementDao->checkPid($pid)) {
+            echo "3awd";
+            die();
+        }
+
         $paiement = $paiementDao->selectionnerPaiement($pid);
         //var_dump($paiement);
 
@@ -48,7 +56,7 @@ if (isset($_GET['pid']) && isset($_GET['action'])) {
                             <div class="form-group row ">
                                 <label for="" class="col-6 col-form-label pr-0">Nom de beneficiaire</label>
                                 <div class="col-6">
-                                    <input type="text" name="beneficiaire" value="<?php echo $paiement->getBeneficiaire(); ?>" class = "form-control form-control-sm" required>
+                                    <input type="text" name="beneficiaire" value="<?php echo $paiement->getBeneficiaire(); ?>" class = "form-control form-control-sm" required readonly>
                                     <!--<div class="invalid-feedback">Please choose a username</div> -->
                                 </div>
                             </div>

@@ -194,6 +194,20 @@
              }
          }
 
+         public function checkDid($did) {
+             $query = "SELECT * FROM `dossier` WHERE id = :did";
+             $stmt= $this->connect->prepare($query);
+             $result = $stmt->execute([
+                 ':did' => $did
+             ]);
+
+             if ($result) {
+                 return $stmt->fetchObject("App\models\dossier\Dossier");
+             } else {
+                 return null;
+             }
+         }
+
 
 
 

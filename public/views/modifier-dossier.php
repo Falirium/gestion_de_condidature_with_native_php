@@ -8,6 +8,13 @@ if (isset($_GET['did'])) {
     //redirect to la liste des dossiers
 }
 
+// exception : if there is no dossier with that specific did
+var_dump($dossierDoa->checkDid($did));
+if (!$dossierDoa->checkDid($did)) {
+    echo "3awd";
+    die();
+}
+
 $dossier = $dossierDoa->selectionnerDossier($did);
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . "/../../vendor/autoload.php";
-$paiementDoa = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory('mysql');
+$paiementDao = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory('mysql');
 
 if (isset($_GET['pid'])) {
     $pid = $_GET['pid'];
@@ -8,7 +8,16 @@ if (isset($_GET['pid'])) {
     //redirect to la liste des paiements
 }
 
-$paiement = $paiementDoa->selectionnerPaiement($pid);
+// exception : if there is no paiement with that specific pid
+var_dump($paiementDao->checkPid($pid));
+if (!$paiementDao->checkPid($pid)) {
+    echo "3awd";
+    die();
+}
+
+$paiement = $paiementDao->selectionnerPaiement($pid);
+
+
 
 
 ?>

@@ -80,12 +80,12 @@ class PaiementDaoImpl implements PaiementDao {
     }
     public function modifierPaiement($paiement) {
         $query = "UPDATE `paiement` 
-                        SET beneficiaire = :beneficiaire, redevance = :redevance, montant = :montant, nBV = :nbv, date_BV = :dbv, date_de_paiement = :dp, bg = :bg, fs = :fs, date_de_OR = :dor, observation = :obs
+                        SET id = :id , beneficiaire = :beneficiaire, redevance = :redevance, montant = :montant, nBV = :nbv, date_BV = :dbv, date_de_paiement = :dp, bg = :bg, fs = :fs, date_de_OR = :dor, observation = :obs
                         WHERE dossier_id = :did";
 
         $stmt = $this->connect->prepare($query);
         $result = $stmt->execute([
-
+            ':id' => $paiement->getId(),
             ':beneficiaire' => $paiement->getBeneficiaire(),
             ':redevance' => $paiement->getRedevance(),
             ':montant' => $paiement->getMontant(),
@@ -99,7 +99,7 @@ class PaiementDaoImpl implements PaiementDao {
 
             ':did' =>$paiement->getDossierId()
         ]);
-        //var_dump($result);
+        var_dump($query,$result);
         if ($result)
             return true;
         else return false;
@@ -128,6 +128,20 @@ class PaiementDaoImpl implements PaiementDao {
         ]);
         if ($result) {
             return $stmt->fetchAll(\PDO::FETCH_CLASS,"App\models\paiement\Paiement");
+        } else {
+            return null;
+        }
+    }
+
+    public function checkPid($pid) {
+        $query = "SELECT * FROM `paiement` WHERE id = :pid";
+        $stmt= $this->connect->prepare($query);
+        $result = $stmt->execute([
+            ':pid' => $pid
+        ]);
+
+        if ($result) {
+            return $stmt->fetchObject("App\models\paiement\Paiement");
         } else {
             return null;
         }

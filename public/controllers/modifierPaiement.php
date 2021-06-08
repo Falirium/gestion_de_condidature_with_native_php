@@ -27,7 +27,7 @@ $paiementDao = \App\models\paiement\PaiementDaoFactory::getDossierDaoFactory("my
 
 if($paiementDao->modifierPaiement($newPaiement)) {
     //echo 'bssatek';
-    header("Refresh:1; url=../views/paiement.php?action=consulter");
+    //header("Refresh:1; url=../views/paiement.php?action=consulter&pid={$newPaiement->getId()}");
 } else {
     echo '3awd';
     //redirect to single paiement page

@@ -17,6 +17,8 @@
 
          public function afficherDossiers($dossierExp, $queryExp);
 
+         public function checkDid($did);
+
      }
 
      
