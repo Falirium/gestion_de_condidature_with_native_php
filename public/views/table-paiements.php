@@ -23,16 +23,31 @@ if (isset($_GET['did'])) {
                             <h2 class="my-2 mb-3">Paiement</h2>
                             <div class="rwo">
                                 <form action="" class="form-inline">
-
                                     <div class="col-12 ">
                                         <input type="text" class="w-25 form-control form-control-sm float-right mr-4" placeholder="search...">
                                     </div>
                                 </form>
 
                             </div>
+
                         </div>
 
                         <div class="col-11 mx-auto align-self-start h-75 my-custom-scrollbar">
+                            <?php
+                            if (isset($_COOKIE['alert'])) {
+                                $msg = $_COOKIE['alert'];
+                                echo '<div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Failed!</strong> '.$msg.'
+                                </div>
+                                ';
+
+
+                            }
+
+
+
+                            ?>
                             <table class="table table-striped ">
                                 <thead>
                                 <tr>

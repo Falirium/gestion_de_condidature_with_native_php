@@ -17,13 +17,21 @@
             header("Location: ../views/dossier.php?action=consulter");
 
         } else {
-            // redirect to single dossier page
-            echo "Failed";
+            // redirect to single dossier page  + with alert message
+            //echo "Failed";
+            $alertMsg = "Failed to archive, please retry !";
+            setcookie("alert", $alertMsg, time() + 10, "../views/");
+
+            header("Refresh:1; url=../views/dossier.php?action=consulter&did={$dossier->getNumero()}");
         }
 
 
     } else {
-        // redirect to table-dossiers.php
+        // redirect to table-dossiers.php  + with alert message
+        $alertMsg = "Server problem, please retry !";
+        setcookie("alert", $alertMsg, time() + 10, "../views/");
+
+        header("Refresh:1; url=../views/dossier.php?action=consulter");
     }
 
 ?>

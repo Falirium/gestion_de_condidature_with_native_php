@@ -8,6 +8,7 @@
     if (!isset($_SESSION['user_id'])) {
         header("Refresh:1; url=../");
     }
+
 ?>
 
 <!DOCTYPE html>

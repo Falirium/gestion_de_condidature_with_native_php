@@ -69,6 +69,29 @@
                     </div>
 
                     <div class="col-12">
+
+                        <?php
+
+
+                        if (isset($_COOKIE['alert'])) {
+
+                            $msg = $_COOKIE['alert'];
+                            echo '<div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>Failed!</strong> '.$msg.'
+                                    </div>
+                                ';
+                            setcookie('alert',"", time() - 1200, "/");
+                        } else if (isset($_COOKIE['success'])) {
+                            $msg = $_COOKIE['alert'];
+                            echo '<div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>Success!</strong> '.$msg.'
+                                    </div>
+                                ';
+                        }
+
+                        ?>
                         <form action="controllers/connexion.php" class="col-10 mx-auto mt-3" method="post">
                             <div class="input-group form-group login-input ">
                                 <div class="input-group-prepend  input-group-sm">

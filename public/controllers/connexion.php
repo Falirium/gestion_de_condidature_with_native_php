@@ -5,9 +5,14 @@
 
 
 
+    //
+    if (isset($_POST["cin_c"]) && isset($_POST["key_c"])) {
+        $e_cin = $_POST["cin_c"];
+        $e_key = $_POST["key_c"];
+    } else {
+        header("Refresh:1; url=../");
+    }
 
-    $e_cin = $_POST["cin_c"];
-    $e_key = $_POST["key_c"];
 
     //Verify credentiels
     $userImpl = \App\models\user\UserDaoFactory::getUserDaoFactory("mysql");
@@ -20,6 +25,13 @@
         header("Refresh:1; url=../views/profil.php");
     } else {
         // redirect to connexion page with "false crdentials message"
+
+        $alertMsg = "Failed to connect you, please verify your crdentials and retry !";
+        setcookie("alert", $alertMsg, time() + 1200,"/");
+
+        var_dump($_COOKIE['alert']);
+
+        header("Refresh:1; url=../");
     }
 
 

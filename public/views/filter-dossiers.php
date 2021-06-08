@@ -26,6 +26,7 @@ if (isset($_GET['dossierType']) && isset($_GET['query'])) {
 
 } else {
     // redirect to liste ds dossiers
+    header("Refresh:1; url=../views/dossier.php?action=consulter");
 }
 
 $dossiers = $dossierDoa->afficherDossiers($dossierExp, $queryExp);

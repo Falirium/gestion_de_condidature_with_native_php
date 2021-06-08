@@ -29,7 +29,11 @@
         //echo 'bssatek';
         header("Refresh:1; url=../views/dossier.php?action=consulter&did={$newDossier->getNumero()}");
     } else {
-        echo '3awd';
-        // redirect to modifier-dossier formulaire
+        //echo '3awd';
+        // redirect to modifier-dossier formulaire  + with alert message
+        $alertMsg = "Failed to modify this folder, please retry !";
+        setcookie("alert", $alertMsg, time() + 10, "../views/");
+
+        header("Refresh:1; url=../views/dossier.php?action=modifier&did={$newDossier->getNumero()}");
     }
 ?>

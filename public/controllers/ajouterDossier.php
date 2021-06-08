@@ -28,7 +28,11 @@
         //echo 'bssatek';
         header("Refresh:1; url=../views/dossier.php?action=consulter&did={$newDossier->getNumero()}");
     } else {
-        echo '3awd';
-        // redirect to formulaire-paiement.php
+        //echo '3awd';
+        // redirect to formulaire-dossier.php  + with alert message
+        $alertMsg = "Failed to add a new folder, please retry !";
+        setcookie("alert", $alertMsg, time() + 10, "../views/");
+
+        header("Refresh:1; url=../views/dossier.php?action=ajouter");
     }
 ?>

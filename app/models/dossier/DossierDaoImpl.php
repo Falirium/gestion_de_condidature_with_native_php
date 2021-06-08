@@ -195,7 +195,7 @@
          }
 
          public function checkDid($did) {
-             $query = "SELECT * FROM `dossier` WHERE id = :did";
+             $query = "SELECT * FROM `dossier` WHERE numero = :did";
              $stmt= $this->connect->prepare($query);
              $result = $stmt->execute([
                  ':did' => $did

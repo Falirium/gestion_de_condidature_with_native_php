@@ -45,6 +45,21 @@ if (isset($_GET['dossierType'])) {
     </div>
 
     <div id="table-container" class="col-11 mx-auto align-self-start h-75 my-custom-scrollbar">
+        <?php
+        if (isset($_COOKIE['alert'])) {
+            $msg = $_COOKIE['alert'];
+            echo '<div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Failed!</strong> '.$msg.'
+                        </div>
+                        ';
+
+            
+        }
+
+
+
+        ?>
         <table class="table table-striped ">
             <thead>
                 <tr>

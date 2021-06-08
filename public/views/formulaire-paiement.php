@@ -7,6 +7,10 @@ if (isset($_GET['did'])) {
     $dossier = $dossierDoa->selectionnerDossier($did);
 } else {
     // redirect to single dossier page
+    $alertMsg = "Server problem, please retry !";
+    setcookie("alert", $alertMsg, time() + 5, "../views/");
+
+    header("Refresh:1; url=../views/dossier.php?action=consulter");
 }
 
 ?>
@@ -20,6 +24,24 @@ if (isset($_GET['did'])) {
                         <div class="col-12 text-center">
                             <h2 class="my-2">Paiement</h2>
                             <p class="mb-4">Choisir un service que vous voulez accomplir en cliquant</p>
+
+
+                            <?php
+                            if (isset($_COOKIE['alert'])) {
+                                $msg = $_COOKIE['alert'];
+                                echo '<div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <strong>Failed!</strong> '.$msg.'
+                                        </div>
+                                        ';
+
+                                
+                            }
+
+
+
+                            ?>
+
                         </div>
 
                         <div class="col-12">

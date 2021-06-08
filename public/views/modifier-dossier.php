@@ -9,10 +9,13 @@ if (isset($_GET['did'])) {
 }
 
 // exception : if there is no dossier with that specific did
-var_dump($dossierDoa->checkDid($did));
+//var_dump($dossierDoa->checkDid($did));
 if (!$dossierDoa->checkDid($did)) {
     echo "3awd";
-    die();
+    $alertMsg = "Server problem, please retry !";
+    setcookie("alert", $alertMsg, time() + 5, "../views/");
+
+    header("Refresh:1; url=../views/dossier.php?action=consulter");
 }
 
 $dossier = $dossierDoa->selectionnerDossier($did);
@@ -25,6 +28,22 @@ $dossier = $dossierDoa->selectionnerDossier($did);
     <div class="col-12 text-center">
         <h2 class="my-2">Dossier</h2>
         <p class="mb-4">Choisir un service que vous voulez accomplir en cliquant</p>
+
+        <?php
+        if (isset($_COOKIE['alert'])) {
+            $msg = $_COOKIE['alert'];
+            echo '<div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Failed!</strong> '.$msg.'
+                        </div>
+                        ';
+
+            
+        }
+
+
+
+        ?>
     </div>
 
     <div class="col-12">

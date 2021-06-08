@@ -31,7 +31,11 @@ if($paiementDao->ajouterPaiement($newPaiement)) {
     echo 'bssatek';
     header("Refresh:1; url=../views/dossier.php?action=consulter");
 } else {
-    echo '3awd';
-    // redirect to single dossier page
+    //echo '3awd';
+    // redirect to single dossier page  + with alert message
+    $alertMsg = "Failed to pay this folder, please retry !";
+    setcookie("alert", $alertMsg, time() + 10, "../views/");
+
+    header("Refresh:1; url=../views/dossier.php?action=consulter&did={$newPaiement->getDossierId()}");
 }
 ?>

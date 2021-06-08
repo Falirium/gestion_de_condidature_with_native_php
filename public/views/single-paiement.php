@@ -9,10 +9,14 @@ if (isset($_GET['pid'])) {
 }
 
 // exception : if there is no paiement with that specific pid
-var_dump($paiementDao->checkPid($pid));
+//var_dump($paiementDao->checkPid($pid));
 if (!$paiementDao->checkPid($pid)) {
-    echo "3awd";
-    die();
+    //echo "3awd";
+    $alertMsg = "Server problem, please retry !";
+    setcookie("alert", $alertMsg, time() + 5, "../views/");
+
+    // redirect to table-dossiers
+    header("Refresh:1; url=../views/paiement.php?action=consulter");
 }
 
 $paiement = $paiementDao->selectionnerPaiement($pid);
